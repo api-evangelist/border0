@@ -1,0 +1,15 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/border0-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Border0_Token
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/border0-openapi.json
