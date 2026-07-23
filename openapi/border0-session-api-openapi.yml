@@ -1,0 +1,327 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Session API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Session
+paths:
+  /session/{socket_id}/{session_id}/session_log:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Download a socket's session recording
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Recording ID
+        name: recording_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+      operationId: get_session-socket-id-session-id-session-log
+      tags:
+      - Session
+  /session/{socket_id}/{session_id}:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show a socket's session info by socket ID and session ID
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.SessionLogPublic'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_session-socket-id-session-id
+      tags:
+      - Session
+    put:
+      security:
+      - Border0_Token: []
+      summary: Kill a socket's session with socket ID, session ID and json payload with killed flag
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Session ID
+        name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.sessionLogRequest'
+        description: Kill session flag
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.SessionLogPublic'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_session-socket-id-session-id
+      tags:
+      - Session
+  /session/{socket_id}:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show all sessions from a socket by socket ID, including active and killed sessions
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.SessionLogPublic'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_session-socket-id
+      tags:
+      - Session
+components:
+  schemas:
+    serializer.SessionLogPublic:
+      type: object
+      properties:
+        audit_log:
+          type: boolean
+        auth_info:
+          type: string
+        client_ip:
+          type: string
+        client_port:
+          type: string
+        country_code:
+          type: string
+        country_flag:
+          type: string
+        end_time:
+          type: string
+        killed:
+          type: boolean
+        last_seen:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/serializer.SessionLogMetadata'
+        name:
+          type: string
+        nickname:
+          type: string
+        picture:
+          type: string
+        recordings:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.Recording'
+        result:
+          type: string
+        server_name:
+          type: string
+        server_port:
+          type: string
+        session_id:
+          type: string
+        session_type:
+          type: string
+        socket_id:
+          type: string
+        sshuser:
+          type: string
+        start_time:
+          type: string
+        sub:
+          type: string
+        user_email:
+          type: string
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
+          type: string
+    serializer.Recording:
+      type: object
+      properties:
+        recording_id:
+          type: string
+        start_time:
+          type: string
+    serializer.SessionLogMetadata:
+      type: object
+      properties:
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
+    v1.sessionLogRequest:
+      type: object
+      properties:
+        killed:
+          type: boolean
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

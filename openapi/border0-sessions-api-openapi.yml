@@ -1,0 +1,360 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Sessions API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Sessions
+paths:
+  /sessions/stats/{stats_type}:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Get session stats by type (locations, sockets, users)
+      parameters:
+      - description: Stats type
+        name: stats_type
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - locations
+          - sockets
+          - users
+      - description: Socket names to filter by
+        name: socket_names
+        in: query
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: User emails to filter by
+        name: user_emails
+        in: query
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: Auth result to filter by
+        name: auth_result
+        in: query
+        schema:
+          type: string
+          enum:
+          - success
+          - denied
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.SessionLogStats'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+      operationId: get_sessions-stats-stats-type
+      tags:
+      - Sessions
+  /sessions:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show all sessions from a organization
+      parameters:
+      - description: Current page
+        name: page
+        in: query
+        schema:
+          type: string
+      - description: Page size
+        name: page_size
+        in: query
+        schema:
+          type: string
+      - description: Socket names to filter by
+        name: socket_names
+        in: query
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: User emails to filter by
+        name: user_emails
+        in: query
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - description: Auth result to filter by
+        name: auth_result
+        in: query
+        schema:
+          type: string
+          enum:
+          - success
+          - denied
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.SessionLogPublicPaginatedExtended'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+      operationId: get_sessions
+      tags:
+      - Sessions
+components:
+  schemas:
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
+          type: string
+    serializer.SessionLogLocationStats:
+      type: object
+      properties:
+        city_name:
+          type: string
+        client_ip:
+          type: string
+        count:
+          type: integer
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        metadata:
+          type: array
+          items:
+            type: integer
+        region_code:
+          type: string
+        region_name:
+          type: string
+    serializer.SessionLogPublicExtended:
+      type: object
+      properties:
+        audit_log:
+          type: boolean
+        auth_info:
+          type: string
+        client_ip:
+          type: string
+        client_port:
+          type: string
+        country_code:
+          type: string
+        country_flag:
+          type: string
+        end_time:
+          type: string
+        killed:
+          type: boolean
+        last_seen:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/serializer.SessionLogMetadata'
+        name:
+          type: string
+        nickname:
+          type: string
+        picture:
+          type: string
+        recordings:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.Recording'
+        result:
+          type: string
+        server_name:
+          type: string
+        server_port:
+          type: string
+        session_id:
+          type: string
+        session_type:
+          type: string
+        socket_id:
+          type: string
+        socket_name:
+          type: string
+        sshuser:
+          type: string
+        start_time:
+          type: string
+        sub:
+          type: string
+        user_email:
+          type: string
+    serializer.Recording:
+      type: object
+      properties:
+        recording_id:
+          type: string
+        start_time:
+          type: string
+    models.SessionLogUserStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        picture:
+          type: string
+        user_email:
+          type: string
+    serializer.SessionLogStats:
+      type: object
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
+        sockets:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogSocketStats'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogUserStats'
+    serializer.SessionLogPublicPaginatedExtended:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/models.PaginationResult'
+        session_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
+    serializer.SessionLogMetadata:
+      type: object
+      properties:
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
+    models.SessionLogSocketStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        socket_name:
+          type: string
+        socket_type:
+          type: string
+    models.PaginationResult:
+      type: object
+      properties:
+        actual_page_size:
+          type: integer
+        current_page:
+          type: integer
+        next_page:
+          type: integer
+        records_per_page:
+          type: integer
+        total_pages:
+          type: integer
+        total_records:
+          type: integer
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

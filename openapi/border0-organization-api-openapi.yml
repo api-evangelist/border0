@@ -1,0 +1,495 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Organization API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Organization
+paths:
+  /organization/identity_provider/{name}:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Remove a custom identity provider from the current organization
+      parameters:
+      - description: Identity provider name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organization-identity-provider-name
+      tags:
+      - Organization
+    get:
+      security:
+      - Border0_Token: []
+      summary: Get a custom identity provider for the current organization
+      parameters:
+      - description: Identity provider name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getIdentityProviderResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organization-identity-provider-name
+      tags:
+      - Organization
+  /organization/identity_providers:
+    get:
+      security:
+      - Border0_Token: []
+      summary: List all identity providers for the current organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getIdentityProvidersResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organization-identity-providers
+      tags:
+      - Organization
+  /organization/identity_provider:
+    patch:
+      security:
+      - Border0_Token: []
+      summary: Update a custom identity provider in the current organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.patchIdentityProviderRequest'
+        description: Identity provider configuration
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: patch_organization-identity-provider
+      tags:
+      - Organization
+    post:
+      security:
+      - Border0_Token: []
+      summary: Add a custom identity provider to the current organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.postIdentityProviderRequest'
+        description: Identity provider configuration
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.postIdentityProviderResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '412':
+          description: Precondition Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organization-identity-provider
+      tags:
+      - Organization
+  /organization/identity_provider_status:
+    put:
+      security:
+      - Border0_Token: []
+      summary: Toggle the status (enable/disable) of an identity provider in the current organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.putIdentityProviderStatusRequest'
+        description: Identity provider status configuration
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organization-identity-provider-status
+      tags:
+      - Organization
+components:
+  schemas:
+    v1.patchIdentityProviderRequest:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.getIdentityProvidersResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.IdentityProvider'
+    models.OpenIDConnectIdentityProviderConfig:
+      type: object
+      properties:
+        client_id:
+          description: 'An identifier which uniquely identifies border0 as a client
+
+            of the OpenID Connect provider.'
+          type: string
+        client_secret:
+          description: 'A per-client secret generated by the identity provider.
+
+            It is used by the client to exchange OAuth2.0 auth codes
+
+            for ID Tokens issued by the identity provider.'
+          type: string
+        discovery_url:
+          description: URL of the discovery document of the OpenID Connect provider.
+          type: string
+        oidc_flow_type:
+          description: 'FlowType determines the way in which the oidc provider
+
+            will transmit ID Tokens to border0''s IDP.
+
+            Front Channel will use OIDC protocol with response_mode=form_post and response_type=id_token.
+
+            Back Channel will use response_type=code.
+
+            See https://darutk.medium.com/diagrams-of-all-the-openid-connect-flows-6968e3990660 for more.'
+          type: string
+    v1.postIdentityProviderResponse:
+      type: object
+      properties:
+        google_workspace_response:
+          $ref: '#/components/schemas/v1.postGoogleWorkspaceIdentityProviderResponse'
+        oidc_response:
+          $ref: '#/components/schemas/v1.postOpenIDConnectIdentityProviderResponse'
+        okta_workforce_response:
+          $ref: '#/components/schemas/v1.postOktaWorkforceIdentityProviderResponse'
+        saml_response:
+          $ref: '#/components/schemas/v1.postSAMLIdentityProviderResponse'
+    v1.postSAMLIdentityProviderResponse:
+      type: object
+      properties:
+        must_allow_redirect_url:
+          type: string
+        request_signing_certificate_url:
+          type: string
+    models.IdentityProvider:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.postOktaWorkforceIdentityProviderResponse:
+      type: object
+      properties:
+        must_allow_redirect_url:
+          type: string
+    v1.putIdentityProviderStatusRequest:
+      type: object
+      required:
+      - name
+      properties:
+        enable:
+          type: boolean
+        global:
+          type: boolean
+        name:
+          type: string
+    v1.postGoogleWorkspaceIdentityProviderResponse:
+      type: object
+      properties:
+        must_allow_javascript_origin:
+          type: string
+        must_allow_redirect_url:
+          type: string
+    v1.postOpenIDConnectIdentityProviderResponse:
+      type: object
+      properties:
+        must_allow_redirect_url:
+          type: string
+    models.OktaWorksforceIdentityProviderConfig:
+      type: object
+      properties:
+        client_id:
+          description: 'An identifier which uniquely identifies border0 as a client
+
+            of the Okta Workforce account. You get this and the client
+
+            secret when you create an "App Integration" in Okta.'
+          type: string
+        client_secret:
+          description: Secret to authenticate with Okta.
+          type: string
+        okta_domain:
+          description: Okta domain for Okta Workforce account e.g. mydomain.okta.com
+          type: string
+    v1.getIdentityProviderResponse:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.postIdentityProviderRequest:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    models.SAMLIdentityProviderConfig:
+      type: object
+      properties:
+        request_protocol_binding:
+          description: 'The protocol to use for SAML assertion request binding, one of [ "HTTP-POST", "HTTP-Redirect" ].
+
+            Note that the value of this field is shorthand, full value is of the form:
+
+            "urn:oasis:names:tc:SAML:2.0:bindings:{REQUEST_PROTOCOL_BINDING_SHORTHAND}"'
+          type: string
+        request_signing_algorithm:
+          description: Algorithm to use for assertion request signing, one of [ "rsa-sha256", "rsa-sha1" ].
+          type: string
+        request_signing_digest_algorithm:
+          description: Algorithm to use for the assertion request signing digest (hash), one of [ "sha256", "sha1" ].
+          type: string
+        request_signing_enabled:
+          description: Whether to have the SAML assertion consumer (border0) sign the assertion request.
+          type: boolean
+        request_template:
+          description: "The template for the SAML assertion request. It may include any/all/none of the following parameters:\n- \"@@AssertServiceURLAndDestination@@\"\n- \"@@ID@@\"\n- \"@@IssueInstant@@\"\n- \"@@ProtocolBinding@@\"\n- \"@@Issuer@@\"\n\nExample Template (ignore the dashes '-'):\n--------------------------------------------------------------------------------------------\n<samlp:AuthnRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\"\n@@AssertServiceURLAndDestination@@\n    ID=\"@@ID@@\"\n    IssueInstant=\"@@IssueInstant@@\"\n    ProtocolBinding=\"@@ProtocolBinding@@\" Version=\"2.0\">\n    <saml:Issuer xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\">@@Issuer@@</saml:Issuer>\n</samlp:AuthnRequest>\n--------------------------------------------------------------------------------------------"
+          type: string
+        sign_in_url:
+          description: The SAML provider's sign-in URL (where users are redirected to)
+          type: string
+        signing_certificate:
+          description: 'The x509 certificate (public key) corresponding to the SAML provider''s
+
+            assertion signing (private) key.'
+          type: string
+    models.GoogleWorkspaceIdentityProviderConfig:
+      type: object
+      properties:
+        client_id:
+          description: 'An identifier which uniquely identifies border0 as a client of the
+
+            Google Workspace account. You get this and the client secret when
+
+            you create an "App Integration" in the Google API Console.
+
+            This is typically of the form ${GIBBERISH}.apps.googleusercontent.com'
+          type: string
+        client_secret:
+          description: Secret to authenticate with Google Workspace.
+          type: string
+        google_workspace_domain:
+          description: Domain of the Google Workspace
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

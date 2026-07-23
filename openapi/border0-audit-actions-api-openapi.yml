@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Audit Actions
+paths:
+  /audit_actions/actors:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show all actors from a given organization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_audit-actions-actors
+      tags:
+      - Audit Actions
+  /audit_actions:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show all audit logs from organization
+      parameters:
+      - description: Action Email
+        name: actor_email
+        in: query
+        schema:
+          type: string
+      - description: Resource Type
+        name: resource_type
+        in: query
+        schema:
+          type: string
+      - description: Resource id
+        name: resource_id
+        in: query
+        schema:
+          type: string
+      - description: Page
+        name: page
+        in: query
+        schema:
+          type: string
+      - description: Page size
+        name: page_size
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.AuditActionPublic'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_audit-actions
+      tags:
+      - Audit Actions
+components:
+  schemas:
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.AuditActionPublic:
+      type: object
+      properties:
+        action_type:
+          type: string
+        actor_email:
+          type: string
+        actor_id:
+          type: string
+        performed_at:
+          type: string
+        requestor_ip:
+          type: string
+        resource_id:
+          type: string
+        resource_type:
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

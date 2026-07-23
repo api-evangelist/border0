@@ -1,0 +1,1504 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Organizations API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Organizations
+paths:
+  /organizations/customdomains:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Delete a custom domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.customDomain'
+        description: Delete organization custom domain
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-customdomains
+      tags:
+      - Organizations
+    get:
+      security:
+      - Border0_Token: []
+      summary: List all custom domains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.OrganizationCustomDomain'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-customdomains
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a custom domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.customDomain'
+        description: Create organization custom domain
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationCustomDomain'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-customdomains
+      tags:
+      - Organizations
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update a custom domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.customDomain'
+        description: Update organization custom domain
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationCustomDomain'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organizations-customdomains
+      tags:
+      - Organizations
+  /organizations/iam/service_accounts/{name}/tokens/{token_id}:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Delete a service account token in the current organization by service account name and token id.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Service Account Token ID (uuid)
+        name: token_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successfully deleted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-iam-service-accounts-name-tokens-token-id
+      tags:
+      - Organizations
+  /organizations/iam/service_accounts/{name}:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Delete a service account in the current organization.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successfully deleted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-iam-service-accounts-name
+      tags:
+      - Organizations
+    get:
+      security:
+      - Border0_Token: []
+      summary: Retrieve a service account in the current organization by name.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serviceaccount.Full'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-iam-service-accounts-name
+      tags:
+      - Organizations
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update a service account in the current organization by name.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.serviceAccountUpdatePayload'
+        description: Service Account Update Request
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serviceaccount.Full'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organizations-iam-service-accounts-name
+      tags:
+      - Organizations
+  /organizations/notifications/{name}:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Delete a notification
+      parameters:
+      - description: Notification name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-notifications-name
+      tags:
+      - Organizations
+    get:
+      security:
+      - Border0_Token: []
+      summary: Describe a notification
+      parameters:
+      - description: Notification name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationNotification'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-notifications-name
+      tags:
+      - Organizations
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update a notification
+      parameters:
+      - description: Notification name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.notificationUpdateRequest'
+        description: Update organization notification
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationNotification'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organizations-notifications-name
+      tags:
+      - Organizations
+  /organizations/recording_storage:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Unset the organization's recording storage
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-recording-storage
+      tags:
+      - Organizations
+    get:
+      security:
+      - Border0_Token: []
+      summary: Verify the recording storage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationRecordingStorage'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-recording-storage
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a recording storage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.recordingStorageRequest'
+        description: Create organization recording strage
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationRecordingStorage'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-recording-storage
+      tags:
+      - Organizations
+  /organizations/tokens:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: Disable an access token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.deleteToken'
+        description: Disable access token
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_organizations-tokens
+      tags:
+      - Organizations
+    get:
+      security:
+      - Border0_Token: []
+      summary: Disable an access token
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-tokens
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a new access token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.createToken'
+        description: Create access token
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: string
+                  name:
+                    type: string
+                  token:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-tokens
+      tags:
+      - Organizations
+  /organizations/iam/service_accounts/{name}/tokens:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Retrieve a service account tokens based on a service account name.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getServiceAccountsTokensResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-iam-service-accounts-name-tokens
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a service account token in the current organization.
+      parameters:
+      - description: Service Account Name (slug)
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.serviceAccountTokenDetailsPayload'
+        description: Service Account Token Creation Request
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.postServiceAccountTokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-iam-service-accounts-name-tokens
+      tags:
+      - Organizations
+  /organizations/iam/service_accounts:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Retrieve the list of all service accounts in the current organization.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getServiceAccountsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-iam-service-accounts
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a service account in the current organization.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.serviceAccountCreatePayload'
+        description: Service Account Creation Request
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serviceaccount.Full'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-iam-service-accounts
+      tags:
+      - Organizations
+  /organizations/notifications:
+    get:
+      security:
+      - Border0_Token: []
+      summary: List all notifications
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.OrganizationNotification'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_organizations-notifications
+      tags:
+      - Organizations
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a notification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.notificationRequest'
+        description: Create organization notification
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.OrganizationNotification'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-notifications
+      tags:
+      - Organizations
+  /organizations/csr:
+    post:
+      security:
+      - Border0_Token: []
+      summary: Generate a cert request and sign the CSR with organization CA
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.certificateSigningRequest'
+        description: certificate signing request
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ca_certificate:
+                    type: string
+                  client_certificate:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-csr
+      tags:
+      - Organizations
+  /organizations/sign_ssh:
+    post:
+      security:
+      - Border0_Token: []
+      summary: Generate a signed SSH cert for organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.mtlsSSHRequest'
+        description: sign the organization key
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signed_ssh_cert:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations-sign-ssh
+      tags:
+      - Organizations
+  /organizations/switch:
+    post:
+      summary: Switch Organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.switchOrgPayload'
+        description: Organization name to switch to
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+      operationId: post_organizations-switch
+      tags:
+      - Organizations
+  /organizations:
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a new organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.createOrg'
+        description: Create organization
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  org_id:
+                    type: string
+                  organization:
+                    type: string
+                  token:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_organizations
+      tags:
+      - Organizations
+  /organizations/settings:
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update organization settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.orgSettings'
+        description: Organization settings to update
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organizations-settings
+      tags:
+      - Organizations
+  /organizations/users/leave:
+    put:
+      security:
+      - Border0_Token: []
+      summary: Leave an organization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.OrganizationRequest'
+        description: Organization to leave
+        required: true
+      responses:
+        '200':
+          description: Successfully left the specified organization
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_organizations-users-leave
+      tags:
+      - Organizations
+components:
+  schemas:
+    v1.mtlsSSHRequest:
+      type: object
+      properties:
+        ssh_public_key:
+          type: string
+    v1.getServiceAccountsTokensResponse:
+      type: object
+      properties:
+        items:
+          type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.TokenSummary'
+    v1.orgSettings:
+      type: object
+      properties:
+        mfa_required:
+          type: boolean
+    v1.postServiceAccountTokenResponse:
+      type: object
+      properties:
+        created_at:
+          type: integer
+        expires_at:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        token:
+          type: string
+    v1.AwsS3Config:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
+    v1.deleteToken:
+      type: object
+      properties:
+        id:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.TokenSummary:
+      type: object
+      properties:
+        connector:
+          type: string
+        created_by:
+          type: string
+        directory_service:
+          type: string
+        expires_at:
+          type: string
+        name:
+          type: string
+        role:
+          description: will be deprecated
+          type: string
+        service_account:
+          type: string
+        token_id:
+          type: string
+    v1.recordingStorageRequest:
+      type: object
+      properties:
+        aws_s3_config:
+          $ref: '#/components/schemas/v1.AwsS3Config'
+        type:
+          type: string
+    serializer.OrganizationCustomDomain:
+      type: object
+      properties:
+        default:
+          type: boolean
+        domain:
+          type: string
+    v1.notificationRequest:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        name:
+          type: string
+        type:
+          type: string
+        webhook_url:
+          type: string
+    serializer.OrganizationRecordingStorage:
+      type: object
+      properties:
+        aws_s3_config:
+          $ref: '#/components/schemas/serializer.awsS3Config'
+        read_error:
+          type: string
+        type:
+          type: string
+    v1.getServiceAccountsResponse:
+      type: object
+      properties:
+        items:
+          type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceaccount.Slim'
+    serviceaccount.Full:
+      type: object
+      properties:
+        active:
+          type: boolean
+        created_at:
+          type: string
+        description:
+          type: string
+        last_seen_at:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        service_account_id:
+          type: string
+        updated_at:
+          type: string
+    v1.switchOrgPayload:
+      type: object
+      required:
+      - org_name
+      properties:
+        org_name:
+          type: string
+          maxLength: 200
+          minLength: 1
+    v1.notificationUpdateRequest:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        webhook_url:
+          type: string
+    serializer.OrganizationNotification:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        name:
+          type: string
+        type:
+          type: string
+        webhook_url:
+          type: string
+    v1.certificateSigningRequest:
+      type: object
+      required:
+      - csr
+      properties:
+        csr:
+          type: string
+    serviceaccount.Slim:
+      type: object
+      properties:
+        active:
+          type: boolean
+        created_at:
+          type: string
+        description:
+          type: string
+        last_seen_at:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        service_account_id:
+          type: string
+        updated_at:
+          type: string
+    v1.OrganizationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        org_id:
+          type: string
+    v1.serviceAccountTokenDetailsPayload:
+      type: object
+      properties:
+        expires_at:
+          description: Token expiry in UNIX timestamp format.
+          type: integer
+        name:
+          description: Name (not unique) for the token.
+          type: string
+    v1.createOrg:
+      type: object
+      properties:
+        name:
+          type: string
+        subdomain:
+          type: string
+    v1.customDomain:
+      type: object
+      properties:
+        default:
+          type: boolean
+        domain:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.awsS3Config:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
+    v1.createToken:
+      type: object
+      properties:
+        expires_at:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+    v1.serviceAccountUpdatePayload:
+      type: object
+      properties:
+        active:
+          description: Whether the service account is active or inactive.
+          type: boolean
+        description:
+          description: A short descriptive text about the service account's usage.
+          type: string
+        name:
+          description: Name (unique slug) for the service account.
+          type: string
+        role:
+          description: Border0 permission level, may be "client", "member" or "admin"
+          type: string
+    v1.serviceAccountCreatePayload:
+      type: object
+      properties:
+        description:
+          description: A short descriptive text about the service account's usage.
+          type: string
+        name:
+          description: Name (unique slug) for the service account.
+          type: string
+        role:
+          description: Border0 permission level, may be "client", "member" or "admin"
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,375 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Client API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Client
+paths:
+  /client/auth/org/{slug}:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Authenticate a client with headers against organization email
+      parameters:
+      - description: Organization email address the client will authenticate against
+        name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Redirect URL path
+        name: redirectpath
+        in: query
+        required: true
+        schema:
+          type: string
+      - description: Redirect URL port
+        name: port
+        in: query
+        required: true
+        schema:
+          type: string
+      - description: Client's email address from OIDC claims
+        name: X-Auth-Email
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Client's subject identifier from OIDC claims
+        name: X-Auth-Subject
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Client's name from OIDC claims
+        name: X-Auth-Name
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Client's profile picture from OIDC claims
+        name: X-Auth-Picture
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect URL
+          headers:
+            Location:
+              description: http://localhost:{port}{redirectpath}?token={token} or http://localhost{port}{redirectpath}?token=&error=org_not_found on error
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_client-auth-org-slug
+      tags:
+      - Client
+  /client/cda/get_token:
+    get:
+      summary: Fetches a client token in exchange for a device authorization code previously authorized via the (OAuth2.0) client device authorization flow
+      parameters:
+      - description: API-issued client device authorization code
+        name: x-client-device-authorization-code
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getClientDeviceAuthorizationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_client-cda-get-token
+      tags:
+      - Client
+  /client/resources:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show socket client resources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.clientResourceResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_client-resources
+      tags:
+      - Client
+  /client/ai_assistants/database:
+    post:
+      summary: Generate SQL query from an input that has a question and database schemas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/llm.DatabaseAgentInput'
+        description: Database AI assistant input
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/restful.ErrorResponse'
+      operationId: post_client-ai-assistants-database
+      tags:
+      - Client
+  /client/cda/authorize:
+    post:
+      summary: Authorizes a device authorization code.
+      parameters:
+      - description: API-issued client device authorization code
+        name: x-client-device-authorization-code
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.getClientDeviceAuthorizationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_client-cda-authorize
+      tags:
+      - Client
+  /client/device_authorizations:
+    post:
+      summary: Posts details for a device initiating a new (OAuth2.0) client device authorization flow in exchange for a one-time-use code
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.postClientDeviceAuthorizationRequest'
+        description: Client device details
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.postClientDeviceAuthorizationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_client-device-authorizations
+      tags:
+      - Client
+components:
+  schemas:
+    v1.clientResourceResponse:
+      type: object
+      properties:
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        refresh_hint:
+          type: integer
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/v1.clientResourceData'
+    v1.getClientDeviceAuthorizationResponse:
+      type: object
+      properties:
+        client_token:
+          type: string
+        device_ip:
+          type: string
+        device_os:
+          type: string
+        status:
+          type: string
+    v1.clientResourceData:
+      type: object
+      properties:
+        alive:
+          type: boolean
+        connector_authentication_enabled:
+          type: boolean
+        database_type:
+          type: string
+        description:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+        end_to_end_encryption_enabled:
+          type: boolean
+        has_upstream_username:
+          type: boolean
+        ip_address:
+          type: string
+        last_seen:
+          type: string
+        private_socket:
+          type: boolean
+        socket_name:
+          type: string
+        socket_ports:
+          type: array
+          items:
+            type: integer
+        socket_type:
+          type: string
+        ssh_type:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    v1.postClientDeviceAuthorizationResponse:
+      type: object
+      properties:
+        authorization_endpoint:
+          type: string
+        authorization_endpoint_code_query_param:
+          type: string
+        code:
+          type: string
+        token_endpoint:
+          type: string
+        token_endpoint_code_header:
+          type: string
+        token_endpoint_poll_interval:
+          type: integer
+        token_endpoint_poll_max_attempts:
+          type: integer
+    v1.postClientDeviceAuthorizationRequest:
+      type: object
+      properties:
+        device_os:
+          type: string
+        organization:
+          type: string
+    llm.DatabaseAgentInput:
+      type: object
+      properties:
+        database_name:
+          type: string
+        database_type:
+          type: string
+        question:
+          type: string
+        schemas:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,392 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions User API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: User
+paths:
+  /user/confirm/{token}:
+    get:
+      summary: Confirm and activate user with a temporary token
+      parameters:
+      - description: Temporary token
+        name: token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_user-confirm-token
+      tags:
+      - User
+  /user/{user_id}:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show user info by user ID
+      parameters:
+      - description: User ID
+        name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_user-user-id
+      tags:
+      - User
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update an existing user
+      parameters:
+      - description: User ID
+        name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.updateUserRequest'
+        description: Update user
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.User'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_user-user-id
+      tags:
+      - User
+  /user:
+    post:
+      summary: Register a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.createUserRequest'
+        description: Create user
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_user
+      tags:
+      - User
+  /user/password:
+    put:
+      security:
+      - Border0_Token: []
+      summary: Update an existing (authenticated) user's account password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.updateUserPasswordRequest'
+        description: Update password request
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.User'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_user-password
+      tags:
+      - User
+components:
+  schemas:
+    serializer.Subscription:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        plan:
+          $ref: '#/components/schemas/serializer.Plan'
+        subscription_limit:
+          $ref: '#/components/schemas/serializer.SubscriptionLimit'
+    serializer.Plan:
+      type: object
+      properties:
+        name:
+          type: string
+    v1.updateUserPasswordRequest:
+      type: object
+      properties:
+        mfa_passcode:
+          type: string
+          maxLength: 12
+          minLength: 6
+        new_password:
+          type: string
+          maxLength: 200
+          minLength: 8
+        password:
+          type: string
+          maxLength: 200
+          minLength: 1
+    serializer.SubscriptionLimit:
+      type: object
+      properties:
+        admin_user_count:
+          type: integer
+        custom_domain_count:
+          type: integer
+        custom_idp_count:
+          type: integer
+        notification_count:
+          type: integer
+        organization_count:
+          type: integer
+        socket_count:
+          type: integer
+        socket_tcp_count:
+          type: integer
+        subscription_id:
+          type: integer
+        user_count:
+          type: integer
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.User:
+      type: object
+      properties:
+        accepted_terms:
+          type: boolean
+        default_org:
+          type: string
+        email:
+          type: string
+        mfa_enabled:
+          type: boolean
+        name:
+          type: string
+        primary_organization:
+          $ref: '#/components/schemas/serializer.Organization'
+        role:
+          type: string
+        sshkey:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/serializer.Subscription'
+        survey_completed:
+          type: boolean
+        user_id:
+          type: string
+        user_name:
+          type: string
+    v1.createUserRequest:
+      type: object
+      required:
+      - email
+      - name
+      - password
+      properties:
+        accepted_terms:
+          type: boolean
+        email:
+          type: string
+          maxLength: 200
+          minLength: 1
+        invite_id:
+          type: string
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+        password:
+          type: string
+          maxLength: 200
+          minLength: 1
+        recaptcha_response:
+          type: string
+        sshkey:
+          type: string
+          maxLength: 5000
+          minLength: 0
+        subdomain:
+          type: string
+    serializer.Organization:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        id:
+          type: string
+        mfa_required:
+          type: boolean
+        name:
+          type: string
+        owner_email:
+          type: string
+        setup_wizard:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+        subdomain:
+          type: string
+    v1.updateUserRequest:
+      type: object
+      properties:
+        accepted_terms:
+          type: boolean
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+        survey_data:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

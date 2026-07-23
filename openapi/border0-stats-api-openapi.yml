@@ -1,0 +1,146 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Stats API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Stats
+paths:
+  /stats/{socket_id}/bandwidth:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Get number of requests by status code
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Start timestamp, default to 1 hour ago
+        name: start_time
+        in: query
+        schema:
+          type: integer
+      - description: End timestamp, default to 30 seconds ago
+        name: end_time
+        in: query
+        schema:
+          type: integer
+      - description: Traffic direction, received or sent, default to sent
+        name: direction
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats.Result'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_stats-socket-id-bandwidth
+      tags:
+      - Stats
+  /stats/{socket_id}/requests:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Get number of requests by status code
+      parameters:
+      - description: Socket ID
+        name: socket_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Start timestamp, default to 1 hour ago
+        name: start_time
+        in: query
+        schema:
+          type: integer
+      - description: End timestamp, default to 30 seconds ago
+        name: end_time
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stats.Result'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_stats-socket-id-requests
+      tags:
+      - Stats
+components:
+  schemas:
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    stats.Result:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/stats.Data'
+        status:
+          type: string
+    stats.Data:
+      type: object
+      properties:
+        result: {}
+        resultType:
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

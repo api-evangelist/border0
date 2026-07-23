@@ -1,0 +1,276 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Policy API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Policy
+paths:
+  /policy/{uuid}:
+    delete:
+      security:
+      - Border0_Token: []
+      summary: delete a policy by id
+      parameters:
+      - description: Policy ID
+        name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.Policy'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: delete_policy-uuid
+      tags:
+      - Policy
+    get:
+      security:
+      - Border0_Token: []
+      summary: get a policy by id
+      parameters:
+      - description: Policy ID
+        name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.Policy'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_policy-uuid
+      tags:
+      - Policy
+    put:
+      security:
+      - Border0_Token: []
+      summary: Updates a policy but not updates the associations
+      parameters:
+      - description: Policy ID
+        name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.updatePolicyRequest'
+        description: Policy data
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.Policy'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: put_policy-uuid
+      tags:
+      - Policy
+components:
+  schemas:
+    v1.updatePolicyRequest:
+      type: object
+      required:
+      - policy_data
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        policy_data:
+          $ref: '#/components/schemas/policy.NonParsedPolicyData'
+    integration.Integration:
+      type: object
+      properties:
+        configuration:
+          description: 'Configuration is the integration configuration e.g. conditions to evaluate
+
+            against. This is generic JSON with schema dependent on integration type.'
+          type: object
+          additionalProperties: true
+        integration_name:
+          description: IntegrationName is the slug of the referenced integration (unique per organization)
+          type: string
+    policy.ConditionWho:
+      type: object
+      properties:
+        domain:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        group:
+          type: array
+          items:
+            type: string
+        service_account:
+          type: array
+          items:
+            type: string
+    policy.NonParsedCondition:
+      type: object
+      properties:
+        when:
+          $ref: '#/components/schemas/policy.NonParsedConditionwhen'
+        where:
+          $ref: '#/components/schemas/policy.NonParsedConditionWhere'
+        who:
+          $ref: '#/components/schemas/policy.ConditionWho'
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
+    serializer.Policy:
+      type: object
+      properties:
+        created_at:
+          type: string
+        deleted:
+          type: boolean
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        org_id:
+          type: string
+        org_wide:
+          type: boolean
+        policy_data:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+        socket_ids:
+          type: array
+          items:
+            type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    policy.NonParsedConditionwhen:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        time_of_day_after:
+          type: string
+        time_of_day_before:
+          type: string
+    policy.NonParsedPolicyData:
+      type: object
+      properties:
+        action:
+          description: Action can be a array of string or a JSON object
+          type: array
+          items:
+            type: string
+        condition:
+          $ref: '#/components/schemas/policy.NonParsedCondition'
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/integration.Integration'
+        version:
+          type: string
+    policy.NonParsedConditionWhere:
+      type: object
+      properties:
+        allowed_ip:
+          type: array
+          items:
+            type: string
+        country:
+          type: array
+          items:
+            type: string
+        country_not:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

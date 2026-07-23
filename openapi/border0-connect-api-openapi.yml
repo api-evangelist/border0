@@ -1,0 +1,756 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Connect API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Connect
+paths:
+  /connect:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Show all connected sockets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/serializer.Socket'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_connect
+      tags:
+      - Connect
+    post:
+      security:
+      - Border0_Token: []
+      summary: Create a socket connection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.createSocketRequest'
+        description: Connect to socket
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/serializer.Socket'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_connect
+      tags:
+      - Connect
+components:
+  schemas:
+    service.StandardKubectlExecTargetConfiguration:
+      type: object
+      properties:
+        kubeconfig_path:
+          type: string
+        master_url:
+          type: string
+    service.GcpCloudSqlDatabaseServiceConfiguration:
+      type: object
+      properties:
+        cloudsql_connector_configuration:
+          $ref: '#/components/schemas/service.GcpCloudSqlConnectorAuthConfiguration'
+        cloudsql_connector_iam_configuration:
+          $ref: '#/components/schemas/service.GcpCloudSqlConnectorIamAuthConfiguration'
+        hostname:
+          type: string
+        port:
+          type: integer
+        protocol:
+          type: string
+        tls_auth_configuration:
+          $ref: '#/components/schemas/service.DatabaseTlsAuthConfiguration'
+        username_and_password_auth_configuration:
+          $ref: '#/components/schemas/service.DatabaseUsernameAndPasswordAuthConfiguration'
+    service.DatabaseServiceConfiguration:
+      type: object
+      properties:
+        aws_rds_database_service_configuration:
+          $ref: '#/components/schemas/service.AwsRdsDatabaseServiceConfiguration'
+        azure_sql_database_service_configuration:
+          $ref: '#/components/schemas/service.AzureSqlDatabaseServiceConfiguration'
+        database_service_type:
+          type: string
+        gcp_cloudsql_database_service_configuration:
+          $ref: '#/components/schemas/service.GcpCloudSqlDatabaseServiceConfiguration'
+        standard_database_service_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.StandardDatabaseServiceConfiguration'
+    service.StandardDatabaseServiceConfiguration:
+      type: object
+      properties:
+        authentication_type:
+          type: string
+        hostname:
+          type: string
+        kerberos_configuration:
+          $ref: '#/components/schemas/service.DatabaseKerberosAuthConfiguration'
+        port:
+          type: integer
+        protocol:
+          type: string
+        sql_authentication_configuration:
+          $ref: '#/components/schemas/service.DatabaseSqlAuthConfiguration'
+        tls_auth_configuration:
+          $ref: '#/components/schemas/service.DatabaseTlsAuthConfiguration'
+        username_and_password_auth_configuration:
+          $ref: '#/components/schemas/service.DatabaseUsernameAndPasswordAuthConfiguration'
+    serializer.Tunnel:
+      type: object
+      properties:
+        local_port:
+          type: integer
+        tunnel_id:
+          type: string
+        tunnel_server:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    service.AwsRdsIamAuthConfiguration:
+      type: object
+      properties:
+        aws_credentials:
+          $ref: '#/components/schemas/common.AwsCredentials'
+        ca_certificate:
+          type: string
+        rds_instance_region:
+          type: string
+        username:
+          type: string
+    service.VpnTlsServiceConfiguration:
+      type: object
+      properties:
+        routes:
+          type: array
+          items:
+            type: string
+        vpn_subnet:
+          type: string
+    service.DatabaseKerberosAuthConfiguration:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+    service.FileServerHttpServiceConfiguration:
+      type: object
+      properties:
+        top_level_directory:
+          type: string
+    service.DockerExecSshServiceConfiguration:
+      type: object
+      properties:
+        container_name_allowlist:
+          type: array
+          items:
+            type: string
+    service.VpnServiceConfiguration:
+      type: object
+      properties:
+        advertised_routes:
+          type: array
+          items:
+            type: string
+        dhcp_pool_subnet:
+          type: string
+    service.HttpProxyTlsServiceConfiguration:
+      type: object
+      properties:
+        host_allowlist:
+          type: array
+          items:
+            type: string
+    serializer.Socket:
+      type: object
+      properties:
+        alive:
+          type: boolean
+        autocreation_rule_id:
+          type: integer
+        cloud_authentication_email_allowed_addressses:
+          type: array
+          items:
+            type: string
+        cloud_authentication_email_allowed_domains:
+          type: array
+          items:
+            type: string
+        cloud_authentication_enabled:
+          type: boolean
+        connector_authentication_enabled:
+          type: boolean
+        connector_managed:
+          type: boolean
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SlimConnector'
+        custom_domains:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        dnsname:
+          type: string
+        end_to_end_encryption_enabled:
+          type: boolean
+        name:
+          type: string
+        org_custom_domain:
+          type: string
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.Policy'
+        private_socket:
+          type: boolean
+        protected_password:
+          type: string
+        protected_socket:
+          type: boolean
+        protected_username:
+          type: string
+        recording_enabled:
+          type: boolean
+        socket_id:
+          type: string
+        socket_tcp_ports:
+          type: array
+          items:
+            type: integer
+        socket_type:
+          type: string
+        ssh_ca:
+          type: string
+        sshkey:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        tunnels:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.Tunnel'
+        upstream_ca:
+          type: string
+        upstream_cert:
+          type: string
+        upstream_http_hostname:
+          type: string
+        upstream_key:
+          type: string
+        upstream_password:
+          type: string
+        upstream_type:
+          type: string
+        upstream_username:
+          type: string
+        user_name:
+          type: string
+    serializer.SlimConnector:
+      type: object
+      properties:
+        connector_id:
+          type: string
+        name:
+          type: string
+    service.RdpServiceConfiguration:
+      type: object
+      properties:
+        hostname:
+          type: string
+        port:
+          type: integer
+    service.HttpServiceConfiguration:
+      type: object
+      properties:
+        fileserver_http_service_configuration:
+          $ref: '#/components/schemas/service.FileServerHttpServiceConfiguration'
+        http_service_type:
+          type: string
+        standard_http_service_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.StandardHttpServiceConfiguration'
+    service.AwsSsmEcsTargetConfiguration:
+      type: object
+      properties:
+        aws_credentials:
+          $ref: '#/components/schemas/common.AwsCredentials'
+        ecs_cluster_name:
+          type: string
+        ecs_cluster_region:
+          type: string
+        ecs_service_name:
+          type: string
+    service.BuiltInSshServiceConfiguration:
+      type: object
+      properties:
+        username:
+          type: string
+        username_provider:
+          type: string
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
+    service.Border0CertificateAuthConfiguration:
+      type: object
+      properties:
+        username:
+          type: string
+        username_provider:
+          type: string
+    service.DatabaseTlsAuthConfiguration:
+      type: object
+      properties:
+        ca_certificate:
+          type: string
+        certificate:
+          type: string
+        key:
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+    service.AwsRdsDatabaseServiceConfiguration:
+      type: object
+      properties:
+        authentication_type:
+          type: string
+        hostname:
+          type: string
+        iam_auth_configuration:
+          $ref: '#/components/schemas/service.AwsRdsIamAuthConfiguration'
+        port:
+          type: integer
+        protocol:
+          type: string
+        username_and_password_auth_configuration:
+          $ref: '#/components/schemas/service.AwsRdsUsernameAndPasswordAuthConfiguration'
+    service.StandardSshServiceConfiguration:
+      type: object
+      properties:
+        border0_certificate_auth_configuration:
+          $ref: '#/components/schemas/service.Border0CertificateAuthConfiguration'
+        hostname:
+          type: string
+        port:
+          type: integer
+        private_key_auth_configuration:
+          $ref: '#/components/schemas/service.PrivateKeyAuthConfiguration'
+        ssh_authentication_type:
+          type: string
+        username_and_password_auth_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.UsernameAndPasswordAuthConfiguration'
+    service.StandardHttpServiceConfiguration:
+      type: object
+      properties:
+        host_header:
+          type: string
+        hostname:
+          type: string
+        port:
+          type: integer
+    v1.createSocketRequest:
+      type: object
+      required:
+      - name
+      - socket_type
+      properties:
+        clientRequestedWith:
+          type: string
+        clientVersion:
+          type: string
+        cloud_authentication_email_allowed_addresses:
+          type: array
+          items:
+            type: string
+        cloud_authentication_email_allowed_domains:
+          type: array
+          items:
+            type: string
+        connector_authentication_enabled:
+          type: boolean
+        connector_data:
+          $ref: '#/components/schemas/models.ConnectorData'
+        connector_id:
+          type: string
+        connector_ids:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+          maxLength: 200
+          minLength: 0
+        discovered_resource_id:
+          type: string
+        name:
+          type: string
+        org_custom_domain:
+          type: string
+        protected_password:
+          type: string
+          maxLength: 100
+          minLength: 0
+        protected_socket:
+          type: boolean
+        protected_username:
+          type: string
+          maxLength: 20
+          minLength: 0
+        recording_enabled:
+          type: boolean
+        socket_type:
+          type: string
+          maxLength: 200
+          minLength: 1
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+        upstream_ca:
+          type: string
+          minLength: 0
+        upstream_cert:
+          type: string
+          minLength: 0
+        upstream_configuration:
+          $ref: '#/components/schemas/service.Configuration'
+        upstream_http_hostname:
+          type: string
+          maxLength: 200
+          minLength: 0
+        upstream_key:
+          type: string
+          minLength: 0
+        upstream_password:
+          type: string
+          maxLength: 200
+          minLength: 0
+        upstream_type:
+          type: string
+          maxLength: 50
+          minLength: 0
+        upstream_username:
+          type: string
+          maxLength: 200
+          minLength: 0
+    service.DatabaseSqlAuthConfiguration:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+    models.ConnectorData:
+      type: object
+      properties:
+        config:
+          $ref: '#/components/schemas/service.Configuration'
+        connector_id:
+          type: string
+    service.GcpCloudSqlConnectorAuthConfiguration:
+      type: object
+      properties:
+        gcp_credentials_json:
+          type: string
+        instance_id:
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+    service.TlsServiceConfiguration:
+      type: object
+      properties:
+        http_proxy_tls_service_configuration:
+          $ref: '#/components/schemas/service.HttpProxyTlsServiceConfiguration'
+        standard_tls_service_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.StandardTlsServiceConfiguration'
+        tls_service_type:
+          type: string
+        vpn_tls_service_configuration:
+          $ref: '#/components/schemas/service.VpnTlsServiceConfiguration'
+    service.GcpCloudSqlConnectorIamAuthConfiguration:
+      type: object
+      properties:
+        gcp_credentials_json:
+          type: string
+        instance_id:
+          type: string
+        username:
+          type: string
+    service.AwsSsmSshServiceConfiguration:
+      type: object
+      properties:
+        aws_ssm_ec2_target_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.AwsSsmEc2TargetConfiguration'
+        aws_ssm_ecs_target_configuration:
+          $ref: '#/components/schemas/service.AwsSsmEcsTargetConfiguration'
+        ssm_target_type:
+          type: string
+    service.SshServiceConfiguration:
+      type: object
+      properties:
+        aws_ec2ic_ssh_service_configuration:
+          $ref: '#/components/schemas/service.AwsEc2ICSshServiceConfiguration'
+        aws_ssm_ssh_service_configuration:
+          $ref: '#/components/schemas/service.AwsSsmSshServiceConfiguration'
+        built_in_ssh_service_configuration:
+          $ref: '#/components/schemas/service.BuiltInSshServiceConfiguration'
+        docker_exec_ssh_service_configuration:
+          $ref: '#/components/schemas/service.DockerExecSshServiceConfiguration'
+        kubectl_exec_ssh_service_configuration:
+          $ref: '#/components/schemas/service.KubectlExecSshServiceConfiguration'
+        ssh_service_type:
+          type: string
+        standard_ssh_service_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.StandardSshServiceConfiguration'
+    service.DatabaseUsernameAndPasswordAuthConfiguration:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+    common.AwsCredentials:
+      type: object
+      properties:
+        aws_access_key_id:
+          type: string
+        aws_profile:
+          type: string
+        aws_secret_access_key:
+          type: string
+        aws_session_token:
+          type: string
+    serializer.Policy:
+      type: object
+      properties:
+        created_at:
+          type: string
+        deleted:
+          type: boolean
+        description:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        org_id:
+          type: string
+        org_wide:
+          type: boolean
+        policy_data:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+        socket_ids:
+          type: array
+          items:
+            type: string
+    service.Configuration:
+      type: object
+      properties:
+        database_service_configuration:
+          $ref: '#/components/schemas/service.DatabaseServiceConfiguration'
+        http_service_configuration:
+          $ref: '#/components/schemas/service.HttpServiceConfiguration'
+        rdp_service_configuration:
+          $ref: '#/components/schemas/service.RdpServiceConfiguration'
+        service_type:
+          type: string
+        ssh_service_configuration:
+          $ref: '#/components/schemas/service.SshServiceConfiguration'
+        tls_service_configuration:
+          $ref: '#/components/schemas/service.TlsServiceConfiguration'
+        vnc_service_configuration:
+          $ref: '#/components/schemas/service.VncServiceConfiguration'
+        vpn_service_configuration:
+          $ref: '#/components/schemas/service.VpnServiceConfiguration'
+    service.UsernameAndPasswordAuthConfiguration:
+      type: object
+      properties:
+        password:
+          type: string
+        username:
+          type: string
+        username_provider:
+          type: string
+    service.VncServiceConfiguration:
+      type: object
+      properties:
+        hostname:
+          type: string
+        password:
+          type: string
+        port:
+          type: integer
+    service.StandardTlsServiceConfiguration:
+      type: object
+      properties:
+        hostname:
+          type: string
+        port:
+          type: integer
+    service.AwsEksKubectlExecTargetConfiguration:
+      type: object
+      properties:
+        aws_credentials:
+          $ref: '#/components/schemas/common.AwsCredentials'
+        eks_cluster_name:
+          type: string
+        eks_cluster_region:
+          type: string
+    service.KubectlExecSshServiceConfiguration:
+      type: object
+      properties:
+        aws_eks_kubectl_exec_target_configuration:
+          $ref: '#/components/schemas/service.AwsEksKubectlExecTargetConfiguration'
+        kubectl_exec_target_type:
+          type: string
+        namespace_allowlist:
+          description: slice of allowed namespaces.
+          type: array
+          items:
+            type: string
+        namespace_selectors_allowlist:
+          description: map of namespace to selectors in that namespace.
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: array
+              items:
+                type: string
+        standard_kubectl_exec_target_configuration:
+          description: mutually exclusive fields below
+          allOf:
+          - $ref: '#/components/schemas/service.StandardKubectlExecTargetConfiguration'
+    service.PrivateKeyAuthConfiguration:
+      type: object
+      properties:
+        private_key:
+          type: string
+        username:
+          type: string
+        username_provider:
+          type: string
+    service.AwsEc2ICSshServiceConfiguration:
+      type: object
+      properties:
+        aws_credentials:
+          $ref: '#/components/schemas/common.AwsCredentials'
+        ec2_instance_id:
+          type: string
+        ec2_instance_region:
+          type: string
+        hostname:
+          type: string
+        port:
+          type: integer
+        username:
+          type: string
+        username_provider:
+          type: string
+    service.AwsRdsUsernameAndPasswordAuthConfiguration:
+      type: object
+      properties:
+        ca_certificate:
+          type: string
+        password:
+          type: string
+        username:
+          type: string
+    service.AzureSqlDatabaseServiceConfiguration:
+      type: object
+      properties:
+        azure_active_directory_integrated_configuration:
+          type: object
+        azure_active_directory_password_configuration:
+          $ref: '#/components/schemas/service.DatabaseUsernameAndPasswordAuthConfiguration'
+        hostname:
+          type: string
+        kerberos_configuration:
+          $ref: '#/components/schemas/service.DatabaseKerberosAuthConfiguration'
+        port:
+          type: integer
+        protocol:
+          type: string
+        sql_authentication_configuration:
+          $ref: '#/components/schemas/service.DatabaseSqlAuthConfiguration'
+    service.AwsSsmEc2TargetConfiguration:
+      type: object
+      properties:
+        aws_credentials:
+          $ref: '#/components/schemas/common.AwsCredentials'
+        ec2_instance_id:
+          type: string
+        ec2_instance_region:
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header

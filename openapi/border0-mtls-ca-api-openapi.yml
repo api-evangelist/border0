@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Border0 Audit Actions Mtls-Ca API
+  description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
+  version: '1.0'
+  contact:
+    name: Border0 Support
+    email: support@border0.com
+    url: https://docs.border0.com
+servers:
+- url: https://api.border0.com/api/v1
+tags:
+- name: Mtls-Ca
+paths:
+  /mtls-ca/socket/{socket_dnsname}/auth:
+    get:
+      security:
+      - Border0_Token: []
+      summary: Generate a JWT for CA request on socket's DNS name
+      parameters:
+      - description: Socket DNS name
+        name: socket_dnsname
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Redirect URL path
+        name: redirectpath
+        in: query
+        required: true
+        schema:
+          type: string
+      - description: Redirect URL port
+        name: port
+        in: query
+        required: true
+        schema:
+          type: string
+      - description: Email address from OIDC claims
+        name: X-Auth-Email
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Subject identifier from OIDC claims
+        name: X-Auth-Subject
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Name from OIDC claims
+        name: X-Auth-Name
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Profile picture from OIDC claims
+        name: X-Auth-Picture
+        in: header
+        required: true
+        schema:
+          type: string
+      - description: Nickname from OIDC claims
+        name: X-Auth-Nickname
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect URL
+          headers:
+            Location:
+              description: http://localhost:{port}{redirectpath}?token={token}
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: get_mtls-ca-socket-socket-dnsname-auth
+      tags:
+      - Mtls-Ca
+  /mtls-ca/socket/{socket_dnsname}/csr:
+    post:
+      security:
+      - Border0_Token: []
+      summary: Generate a cert request and sign the CSR with socket's CA cert
+      parameters:
+      - description: Socket DNS name
+        name: socket_dnsname
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.certificateSigningRequest'
+        description: Update socket's custom cert
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ca_certificate:
+                    type: string
+                  client_certificate:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_mtls-ca-socket-socket-dnsname-csr
+      tags:
+      - Mtls-Ca
+  /mtls-ca/socket/{socket_dnsname}/ssh:
+    post:
+      security:
+      - Border0_Token: []
+      summary: Generate a signed SSH cert for socket
+      parameters:
+      - description: Socket DNS name
+        name: socket_dnsname
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/v1.mtlsSSHRequest'
+        description: Update socket's custom cert
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  signed_ssh_cert:
+                    type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1.BaseErrorResponse'
+      operationId: post_mtls-ca-socket-socket-dnsname-ssh
+      tags:
+      - Mtls-Ca
+components:
+  schemas:
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.mtlsSSHRequest:
+      type: object
+      properties:
+        ssh_public_key:
+          type: string
+    v1.certificateSigningRequest:
+      type: object
+      required:
+      - csr
+      properties:
+        csr:
+          type: string
+  securitySchemes:
+    Border0_Token:
+      type: apiKey
+      name: Authorization
+      in: header
