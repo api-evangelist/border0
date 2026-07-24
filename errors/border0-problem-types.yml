@@ -1,0 +1,58 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/border0-openapi.json
+format: http-status
+note: Border0 API returns standard HTTP status codes; responses are application/json (not RFC 9457 problem+json).
+  Derived from 4xx/5xx responses across 89 operations.
+envelope:
+  content_type: application/json
+  fields:
+  - error_message
+  - code
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  remediation: Validate the request body/parameters against the schema.
+  example_operations:
+  - openapi/border0-openapi.json#delete_organization-identity-provider-name
+  - openapi/border0-openapi.json#get_organization-identity-provider-name
+  - openapi/border0-openapi.json#delete_organizations-customdomains
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  remediation: Provide a valid Border0 token in the Authorization header.
+  example_operations:
+  - openapi/border0-openapi.json#delete_organization-identity-provider-name
+  - openapi/border0-openapi.json#get_organization-identity-provider-name
+  - openapi/border0-openapi.json#delete_organizations-customdomains
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  remediation: Ensure the authenticated identity has a policy/role granting this action.
+  example_operations:
+  - openapi/border0-openapi.json#delete_organization-identity-provider-name
+  - openapi/border0-openapi.json#delete_organizations-iam-service-accounts-name-tokens-token-id
+  - openapi/border0-openapi.json#delete_organizations-iam-service-accounts-name
+- status: 404
+  title: Not Found
+  description: Not Found
+  remediation: Verify the resource id/name exists in the current organization.
+  example_operations:
+  - openapi/border0-openapi.json#get_organization-identity-provider-name
+  - openapi/border0-openapi.json#delete_organizations-customdomains
+  - openapi/border0-openapi.json#get_organizations-customdomains
+- status: 412
+  title: Precondition Failed
+  description: Precondition Failed
+  remediation: Satisfy the precondition (e.g. required state) before retrying.
+  example_operations:
+  - openapi/border0-openapi.json#post_organization-identity-provider
+- status: 500
+  title: Internal Server Error
+  description: Internal Server Error
+  remediation: Transient server error; retry with backoff and contact support@border0.com if it persists.
+  example_operations:
+  - openapi/border0-openapi.json#delete_organization-identity-provider-name
+  - openapi/border0-openapi.json#get_organization-identity-provider-name
+  - openapi/border0-openapi.json#delete_organizations-customdomains

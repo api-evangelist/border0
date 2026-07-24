@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Border0 API
+  version: 1.0.0
+extends: openapi/border0-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-18'
+      x-apievangelist-source: assembled from per-endpoint OpenAPI fragments published on docs.border0.com/reference
+      x-apievangelist-notes: >-
+        This spec was faithfully assembled from Border0's own per-operation OpenAPI fragments
+        (ReadMe reference pages). operationIds (from the canonical reference slug) and root-path
+        tags were added by API Evangelist to improve navigability; request/response schemas are
+        verbatim from Border0.
+  - target: $.info
+    update:
+      x-agentic-access: agentic-access/border0-agentic-access.yml
+      x-authentication: authentication/border0-authentication.yml
+      x-error-catalog: errors/border0-problem-types.yml

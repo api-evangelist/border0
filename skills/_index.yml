@@ -1,0 +1,18 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/border0-openapi.json
+note: Packaged Agent Skills for Border0's marquee admin-API flows. Every step is grounded in
+  a real operationId verified against openapi/border0-openapi.json.
+skills:
+  - file: border0-create-socket-and-policy.md
+    name: Create a Border0 socket and attach an access policy
+    api: openapi/border0-openapi.json
+    operations: [post_socket, get_socket, post_policies, get_policy-uuid, post_socket-socket-id-or-name-evaluate]
+  - file: border0-provision-service-account.md
+    name: Provision a Border0 service account for automation
+    api: openapi/border0-openapi.json
+    operations: [post_organizations-iam-service-accounts, get_organizations-iam-service-accounts, post_organizations-iam-service-accounts-name-tokens]
+  - file: border0-audit-sessions.md
+    name: Audit Border0 sessions and access activity
+    api: openapi/border0-openapi.json
+    operations: [get_sessions, get_sessions-stats-stats-type, get_audit-actions]

@@ -1,0 +1,146 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/border0-openapi.json
+note: Entity graph derived from OpenAPI component schemas and id-reference fields. Relationships inferred
+  from resource paths (sockets, policies, organizations, sessions, service accounts, connectors).
+entities:
+- name: socket
+  schema: serializer.Socket
+  key_fields:
+  - alive
+  - autocreation_rule_id
+  - cloud_authentication_email_allowed_addressses
+  - cloud_authentication_email_allowed_domains
+  - cloud_authentication_enabled
+  - connector_authentication_enabled
+  - connector_managed
+  - connectors
+  - custom_domains
+  - description
+  - dnsname
+  - end_to_end_encryption_enabled
+  - name
+  - org_custom_domain
+  - policies
+  - private_socket
+  - protected_password
+  - protected_socket
+  - protected_username
+  - recording_enabled
+  relationships:
+  - kind: belongs_to
+    entity: organization
+    note: org via socket ownership
+  - kind: has_many
+    entity: tunnel
+    note: tunnels per socket
+  - kind: has_many
+    entity: session
+    note: sessions per socket
+- name: policy
+  schema: serializer.Policy
+  key_fields:
+  - created_at
+  - deleted
+  - description
+  - id
+  - name
+  - org_id
+  - org_wide
+  - policy_data
+  - socket_ids
+  relationships:
+  - kind: belongs_to
+    entity: organization
+    note: org via policy
+  - kind: has_many
+    entity: socket
+    note: sockets attached to policy
+- name: organization
+  schema: serializer.OrganizationCustomDomain
+  key_fields:
+  - default
+  - domain
+  relationships:
+  - kind: has_many
+    entity: user
+    note: members
+  - kind: has_many
+    entity: socket
+    note: sockets
+  - kind: has_many
+    entity: policy
+    note: policies
+  - kind: has_many
+    entity: serviceaccount
+    note: service accounts
+- name: user
+  schema: models.SessionLogUserStats
+  key_fields:
+  - count
+  - picture
+  - user_email
+  relationships:
+  - kind: belongs_to
+    entity: organization
+    note: membership
+- name: connector
+  schema: serializer.SlimConnector
+  key_fields:
+  - connector_id
+  - name
+  relationships:
+  - kind: belongs_to
+    entity: organization
+    note: org scope
+- name: serviceaccount
+  schema: v1.getServiceAccountsTokensResponse
+  key_fields:
+  - items
+  - list
+  relationships:
+  - kind: belongs_to
+    entity: organization
+    note: org scope
+  - kind: has_many
+    entity: token
+    note: access tokens
+- name: session
+  schema: serializer.SessionLogMetadata
+  key_fields:
+  - ip_metadata
+  relationships:
+  - kind: belongs_to
+    entity: socket
+    note: session on a socket
+- name: token
+  schema: v1.deleteToken
+  key_fields:
+  - id
+- name: identityprovider
+  schema: models.GoogleWorkspaceIdentityProviderConfig
+  key_fields:
+  - client_id
+  - client_secret
+  - google_workspace_domain
+- name: notification
+  schema: serializer.OrganizationNotification
+  key_fields:
+  - email_recipients
+  - enabled
+  - events
+  - integration_configuration
+  - name
+  - type
+  - webhook_url
+- name: customdomain
+  schema: v1.customDomain
+  key_fields:
+  - default
+  - domain
+- name: tunnel
+  schema: serializer.Tunnel
+  key_fields:
+  - local_port
+  - tunnel_id
+  - tunnel_server

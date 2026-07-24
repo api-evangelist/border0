@@ -1,0 +1,44 @@
+{
+  "provider": "border0",
+  "sources": [
+    "border0-audit-actions-api-openapi.yml",
+    "border0-client-api-openapi.yml",
+    "border0-connect-api-openapi.yml",
+    "border0-login-api-openapi.yml",
+    "border0-mtls-ca-api-openapi.yml",
+    "border0-organization-api-openapi.yml",
+    "border0-organizations-api-openapi.yml",
+    "border0-policies-api-openapi.yml",
+    "border0-policy-api-openapi.yml",
+    "border0-session-api-openapi.yml",
+    "border0-sessions-api-openapi.yml",
+    "border0-socket-api-openapi.yml",
+    "border0-stats-api-openapi.yml",
+    "border0-user-api-openapi.yml",
+    "border0-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "border0-audit-actions-api-openapi.yml",
+    "border0-client-api-openapi.yml",
+    "border0-connect-api-openapi.yml",
+    "border0-login-api-openapi.yml",
+    "border0-mtls-ca-api-openapi.yml",
+    "border0-organization-api-openapi.yml",
+    "border0-organizations-api-openapi.yml",
+    "border0-policies-api-openapi.yml",
+    "border0-policy-api-openapi.yml",
+    "border0-session-api-openapi.yml",
+    "border0-sessions-api-openapi.yml",
+    "border0-socket-api-openapi.yml",
+    "border0-stats-api-openapi.yml",
+    "border0-user-api-openapi.yml",
+    "border0-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [
+    "border0-socket-api-openapi.yml: dangling $ref: #/components/requestBodies/v1.signTunnelKeyRequest"
+  ],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

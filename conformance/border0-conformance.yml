@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/border0-openapi.json
+note: Cross-cutting standards asserted from the assembled OpenAPI (security schemes, paths,
+  response shapes) and the docs. Border0 documents an OAuth 2.0 device authorization flow
+  for client login and short-lived credential exchange (identity federation), but the admin
+  API itself authenticates with a static Authorization-header token.
+standards:
+  - id: oauth2-device-authorization
+    conforms: true
+    evidence: docs and reference expose /client/device_authorizations, /client/cda/authorize,
+      /client/cda/get_token (RFC 8628 device authorization grant)
+  - id: apikey-bearer-token
+    conforms: true
+    evidence: securityScheme Border0_Token (apiKey, header Authorization) applied to 76 operations
+  - id: oidc-identity-federation
+    conforms: true
+    evidence: docs "Identity Federation for Automated Workflows" — verifies signed OIDC tokens
+      from GitHub Actions/GitLab/CircleCI/AWS IAM and exchanges for short-lived Border0 credentials
+  - id: mtls
+    conforms: true
+    evidence: mTLS CA operations for sockets (/mtls/ca/socket/{dnsname}/csr, /ssh)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: error responses are application/json with error_message/code, not application/problem+json
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returns 404 (a responsible-disclosure policy is published in docs instead)

@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/border0-openapi.json
+note: Cross-cutting request/response semantics derived from the assembled OpenAPI and the
+  Border0 docs. See authentication/, errors/, lifecycle/ for the full detail.
+authentication:
+  style: static bearer token in Authorization header
+  scheme: Border0_Token (apiKey, header)
+  detail: Service-account tokens (and short-lived federated credentials) are sent in the
+    Authorization header. See authentication/border0-authentication.yml.
+  docs: https://docs.border0.com/docs/service-accounts
+idempotency:
+  supported: false
+  note: No documented idempotency-key header/parameter; writes are not advertised as idempotent.
+pagination:
+  style: page-number
+  params: [page, page_size]
+  applies_to: [get_policies, get_sessions, get_audit_actions]
+  note: Offset/page-number pagination on list endpoints via page and page_size query params.
+versioning:
+  style: uri-path
+  current: v1
+  base_url: https://api.border0.com/api/v1
+error_envelope:
+  content_type: application/json
+  shape: '{ error_message, code }'
+  reference: errors/border0-problem-types.yml
+rate_limiting:
+  documented: false
+  note: No public rate-limit signaling documented.

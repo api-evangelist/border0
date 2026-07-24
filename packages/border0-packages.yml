@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/borderzero
+note: First-party Border0 client libraries and tooling harvested from the borderzero GitHub
+  organization and public registries. The legacy border0-cli repository is no longer public;
+  the CLI binary is distributed from download.border0.com (see cli/border0-cli.yml).
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/borderzero/border0-go
+    url: https://pkg.go.dev/github.com/borderzero/border0-go
+    repo: https://github.com/borderzero/border0-go
+    install: go get github.com/borderzero/border0-go
+    version: v1.4.124
+    official: true
+    description: Border0's official SDK for Go — client for the Border0 admin API (sockets, policies, connectors).
+  - language: hcl
+    registry: terraform
+    name: borderzero/border0
+    url: https://registry.terraform.io/providers/borderzero/border0/latest
+    repo: https://github.com/borderzero/terraform-provider-border0
+    install: 'terraform { required_providers { border0 = { source = "borderzero/border0" } } }'
+    version: v3.0.36
+    downloads: 37740
+    official: true
+    description: Official Border0 Terraform provider for managing sockets, policies, and connectors as code.
+  - language: javascript
+    registry: github-actions
+    name: borderzero/gh-action
+    url: https://github.com/borderzero/gh-action
+    repo: https://github.com/borderzero/gh-action
+    official: true
+    description: Border0 GitHub Action companion for wiring Border0 access into CI/CD workflows.
+  - language: typescript
+    registry: github-actions
+    name: borderzero/configure-border0-credentials
+    url: https://github.com/borderzero/configure-border0-credentials
+    official: true
+    description: GitHub Action to exchange a GitHub ID token for a short-lived Border0 service-account credential.

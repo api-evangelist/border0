@@ -1,0 +1,460 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/border0-openapi.json
+note: No official Border0 hosted MCP server was found (checked docs.border0.com, npm @modelcontextprotocol,
+  MCP registries). This is a DERIVED candidate tool surface, one tool per Border0 API operation, that
+  a generator (e.g. apis.io Toolsmith) could forge from the OpenAPI. Not published by Border0.
+server:
+  name: border0
+  transport: http
+  auth: Border0 service-account token (Authorization header)
+tools:
+- name: delete_organization-identity-provider-name
+  description: Remove a custom identity provider from the current organization
+  method: DELETE
+  path: /organization/identity_provider/{name}
+  source_operation: openapi/border0-openapi.json#delete_organization-identity-provider-name
+- name: get_organization-identity-provider-name
+  description: Get a custom identity provider for the current organization
+  method: GET
+  path: /organization/identity_provider/{name}
+  source_operation: openapi/border0-openapi.json#get_organization-identity-provider-name
+- name: delete_organizations-customdomains
+  description: Delete a custom domain
+  method: DELETE
+  path: /organizations/customdomains
+  source_operation: openapi/border0-openapi.json#delete_organizations-customdomains
+- name: get_organizations-customdomains
+  description: List all custom domains
+  method: GET
+  path: /organizations/customdomains
+  source_operation: openapi/border0-openapi.json#get_organizations-customdomains
+- name: post_organizations-customdomains
+  description: Create a custom domain
+  method: POST
+  path: /organizations/customdomains
+  source_operation: openapi/border0-openapi.json#post_organizations-customdomains
+- name: put_organizations-customdomains
+  description: Update a custom domain
+  method: PUT
+  path: /organizations/customdomains
+  source_operation: openapi/border0-openapi.json#put_organizations-customdomains
+- name: delete_organizations-iam-service-accounts-name-tokens-token-id
+  description: Delete a service account token in the current organization by service account name and
+    token id.
+  method: DELETE
+  path: /organizations/iam/service_accounts/{name}/tokens/{token_id}
+  source_operation: openapi/border0-openapi.json#delete_organizations-iam-service-accounts-name-tokens-token-id
+- name: delete_organizations-iam-service-accounts-name
+  description: Delete a service account in the current organization.
+  method: DELETE
+  path: /organizations/iam/service_accounts/{name}
+  source_operation: openapi/border0-openapi.json#delete_organizations-iam-service-accounts-name
+- name: get_organizations-iam-service-accounts-name
+  description: Retrieve a service account in the current organization by name.
+  method: GET
+  path: /organizations/iam/service_accounts/{name}
+  source_operation: openapi/border0-openapi.json#get_organizations-iam-service-accounts-name
+- name: put_organizations-iam-service-accounts-name
+  description: Update a service account in the current organization by name.
+  method: PUT
+  path: /organizations/iam/service_accounts/{name}
+  source_operation: openapi/border0-openapi.json#put_organizations-iam-service-accounts-name
+- name: delete_organizations-notifications-name
+  description: Delete a notification
+  method: DELETE
+  path: /organizations/notifications/{name}
+  source_operation: openapi/border0-openapi.json#delete_organizations-notifications-name
+- name: get_organizations-notifications-name
+  description: Describe a notification
+  method: GET
+  path: /organizations/notifications/{name}
+  source_operation: openapi/border0-openapi.json#get_organizations-notifications-name
+- name: put_organizations-notifications-name
+  description: Update a notification
+  method: PUT
+  path: /organizations/notifications/{name}
+  source_operation: openapi/border0-openapi.json#put_organizations-notifications-name
+- name: delete_organizations-recording-storage
+  description: Unset the organization's recording storage
+  method: DELETE
+  path: /organizations/recording_storage
+  source_operation: openapi/border0-openapi.json#delete_organizations-recording-storage
+- name: get_organizations-recording-storage
+  description: Verify the recording storage
+  method: GET
+  path: /organizations/recording_storage
+  source_operation: openapi/border0-openapi.json#get_organizations-recording-storage
+- name: post_organizations-recording-storage
+  description: Create a recording storage
+  method: POST
+  path: /organizations/recording_storage
+  source_operation: openapi/border0-openapi.json#post_organizations-recording-storage
+- name: delete_organizations-tokens
+  description: Disable an access token
+  method: DELETE
+  path: /organizations/tokens
+  source_operation: openapi/border0-openapi.json#delete_organizations-tokens
+- name: get_organizations-tokens
+  description: Disable an access token
+  method: GET
+  path: /organizations/tokens
+  source_operation: openapi/border0-openapi.json#get_organizations-tokens
+- name: post_organizations-tokens
+  description: Create a new access token
+  method: POST
+  path: /organizations/tokens
+  source_operation: openapi/border0-openapi.json#post_organizations-tokens
+- name: delete_policy-uuid
+  description: delete a policy by id
+  method: DELETE
+  path: /policy/{uuid}
+  source_operation: openapi/border0-openapi.json#delete_policy-uuid
+- name: get_policy-uuid
+  description: get a policy by id
+  method: GET
+  path: /policy/{uuid}
+  source_operation: openapi/border0-openapi.json#get_policy-uuid
+- name: put_policy-uuid
+  description: Updates a policy but not updates the associations
+  method: PUT
+  path: /policy/{uuid}
+  source_operation: openapi/border0-openapi.json#put_policy-uuid
+- name: delete_socket-socket-id-or-name-tunnel-tunnel-id
+  description: Delete one tunnel from a socket by socket ID and tunnel ID
+  method: DELETE
+  path: /socket/{socket_id_or_name}/tunnel/{tunnel_id}
+  source_operation: openapi/border0-openapi.json#delete_socket-socket-id-or-name-tunnel-tunnel-id
+- name: get_socket-socket-id-or-name-tunnel-tunnel-id
+  description: Show one tunnel from a socket by socket ID and tunnel ID
+  method: GET
+  path: /socket/{socket_id_or_name}/tunnel/{tunnel_id}
+  source_operation: openapi/border0-openapi.json#get_socket-socket-id-or-name-tunnel-tunnel-id
+- name: delete_socket-socket-id-or-name
+  description: Delete a socket by ID
+  method: DELETE
+  path: /socket/{socket_id_or_name}
+  source_operation: openapi/border0-openapi.json#delete_socket-socket-id-or-name
+- name: get_socket-socket-id-or-name
+  description: Show a socket by ID
+  method: GET
+  path: /socket/{socket_id_or_name}
+  source_operation: openapi/border0-openapi.json#get_socket-socket-id-or-name
+- name: put_socket-socket-id-or-name
+  description: Update a socket by ID
+  method: PUT
+  path: /socket/{socket_id_or_name}
+  source_operation: openapi/border0-openapi.json#put_socket-socket-id-or-name
+- name: get_audit-actions-actors
+  description: Show all actors from a given organization
+  method: GET
+  path: /audit_actions/actors
+  source_operation: openapi/border0-openapi.json#get_audit-actions-actors
+- name: get_audit-actions
+  description: Show all audit logs from organization
+  method: GET
+  path: /audit_actions
+  source_operation: openapi/border0-openapi.json#get_audit-actions
+- name: get_client-auth-org-slug
+  description: Authenticate a client with headers against organization email
+  method: GET
+  path: /client/auth/org/{slug}
+  source_operation: openapi/border0-openapi.json#get_client-auth-org-slug
+- name: get_client-cda-get-token
+  description: Fetches a client token in exchange for a device authorization code previously authorized
+    via the (OAuth2.0) client devic
+  method: GET
+  path: /client/cda/get_token
+  source_operation: openapi/border0-openapi.json#get_client-cda-get-token
+- name: get_client-resources
+  description: Show socket client resources
+  method: GET
+  path: /client/resources
+  source_operation: openapi/border0-openapi.json#get_client-resources
+- name: get_connect
+  description: Show all connected sockets
+  method: GET
+  path: /connect
+  source_operation: openapi/border0-openapi.json#get_connect
+- name: post_connect
+  description: Create a socket connection
+  method: POST
+  path: /connect
+  source_operation: openapi/border0-openapi.json#post_connect
+- name: get_mtls-ca-socket-socket-dnsname-auth
+  description: Generate a JWT for CA request on socket's DNS name
+  method: GET
+  path: /mtls-ca/socket/{socket_dnsname}/auth
+  source_operation: openapi/border0-openapi.json#get_mtls-ca-socket-socket-dnsname-auth
+- name: get_organization-identity-providers
+  description: List all identity providers for the current organization
+  method: GET
+  path: /organization/identity_providers
+  source_operation: openapi/border0-openapi.json#get_organization-identity-providers
+- name: get_organizations-iam-service-accounts-name-tokens
+  description: Retrieve a service account tokens based on a service account name.
+  method: GET
+  path: /organizations/iam/service_accounts/{name}/tokens
+  source_operation: openapi/border0-openapi.json#get_organizations-iam-service-accounts-name-tokens
+- name: post_organizations-iam-service-accounts-name-tokens
+  description: Create a service account token in the current organization.
+  method: POST
+  path: /organizations/iam/service_accounts/{name}/tokens
+  source_operation: openapi/border0-openapi.json#post_organizations-iam-service-accounts-name-tokens
+- name: get_organizations-iam-service-accounts
+  description: Retrieve the list of all service accounts in the current organization.
+  method: GET
+  path: /organizations/iam/service_accounts
+  source_operation: openapi/border0-openapi.json#get_organizations-iam-service-accounts
+- name: post_organizations-iam-service-accounts
+  description: Create a service account in the current organization.
+  method: POST
+  path: /organizations/iam/service_accounts
+  source_operation: openapi/border0-openapi.json#post_organizations-iam-service-accounts
+- name: get_organizations-notifications
+  description: List all notifications
+  method: GET
+  path: /organizations/notifications
+  source_operation: openapi/border0-openapi.json#get_organizations-notifications
+- name: post_organizations-notifications
+  description: Create a notification
+  method: POST
+  path: /organizations/notifications
+  source_operation: openapi/border0-openapi.json#post_organizations-notifications
+- name: get_policies-find
+  description: find policies by a specific param
+  method: GET
+  path: /policies/find
+  source_operation: openapi/border0-openapi.json#get_policies-find
+- name: get_policies
+  description: get policies paginated
+  method: GET
+  path: /policies
+  source_operation: openapi/border0-openapi.json#get_policies
+- name: post_policies
+  description: Create a new policy and attach sockets to them
+  method: POST
+  path: /policies
+  source_operation: openapi/border0-openapi.json#post_policies
+- name: get_session-socket-id-session-id-session-log
+  description: Download a socket's session recording
+  method: GET
+  path: /session/{socket_id}/{session_id}/session_log
+  source_operation: openapi/border0-openapi.json#get_session-socket-id-session-id-session-log
+- name: get_session-socket-id-session-id
+  description: Show a socket's session info by socket ID and session ID
+  method: GET
+  path: /session/{socket_id}/{session_id}
+  source_operation: openapi/border0-openapi.json#get_session-socket-id-session-id
+- name: put_session-socket-id-session-id
+  description: Kill a socket's session with socket ID, session ID and json payload with killed flag
+  method: PUT
+  path: /session/{socket_id}/{session_id}
+  source_operation: openapi/border0-openapi.json#put_session-socket-id-session-id
+- name: get_session-socket-id
+  description: Show all sessions from a socket by socket ID, including active and killed sessions
+  method: GET
+  path: /session/{socket_id}
+  source_operation: openapi/border0-openapi.json#get_session-socket-id
+- name: get_sessions-stats-stats-type
+  description: Get session stats by type (locations, sockets, users)
+  method: GET
+  path: /sessions/stats/{stats_type}
+  source_operation: openapi/border0-openapi.json#get_sessions-stats-stats-type
+- name: get_sessions
+  description: Show all sessions from a organization
+  method: GET
+  path: /sessions
+  source_operation: openapi/border0-openapi.json#get_sessions
+- name: get_socket-socket-id-or-name-customcert
+  description: Show a custom cert from a socket
+  method: GET
+  path: /socket/{socket_id_or_name}/customcert
+  source_operation: openapi/border0-openapi.json#get_socket-socket-id-or-name-customcert
+- name: get_socket-socket-id-or-name-tunnel
+  description: Show all tunnels from a socket
+  method: GET
+  path: /socket/{socket_id_or_name}/tunnel
+  source_operation: openapi/border0-openapi.json#get_socket-socket-id-or-name-tunnel
+- name: post_socket-socket-id-or-name-tunnel
+  description: Create a socket tunnel
+  method: POST
+  path: /socket/{socket_id_or_name}/tunnel
+  source_operation: openapi/border0-openapi.json#post_socket-socket-id-or-name-tunnel
+- name: get_socket-socket-id-sessions
+  description: Show all sessions from a socket by socket ID, paginated including active and killed sessions
+  method: GET
+  path: /socket/{socket_id}/sessions
+  source_operation: openapi/border0-openapi.json#get_socket-socket-id-sessions
+- name: get_socket
+  description: Show all sockets
+  method: GET
+  path: /socket
+  source_operation: openapi/border0-openapi.json#get_socket
+- name: post_socket
+  description: Create a socket
+  method: POST
+  path: /socket
+  source_operation: openapi/border0-openapi.json#post_socket
+- name: get_stats-socket-id-bandwidth
+  description: Get number of requests by status code
+  method: GET
+  path: /stats/{socket_id}/bandwidth
+  source_operation: openapi/border0-openapi.json#get_stats-socket-id-bandwidth
+- name: get_stats-socket-id-requests
+  description: Get number of requests by status code
+  method: GET
+  path: /stats/{socket_id}/requests
+  source_operation: openapi/border0-openapi.json#get_stats-socket-id-requests
+- name: get_user-confirm-token
+  description: Confirm and activate user with a temporary token
+  method: GET
+  path: /user/confirm/{token}
+  source_operation: openapi/border0-openapi.json#get_user-confirm-token
+- name: get_user-user-id
+  description: Show user info by user ID
+  method: GET
+  path: /user/{user_id}
+  source_operation: openapi/border0-openapi.json#get_user-user-id
+- name: put_user-user-id
+  description: Update an existing user
+  method: PUT
+  path: /user/{user_id}
+  source_operation: openapi/border0-openapi.json#put_user-user-id
+- name: get_users-mfa-setup
+  description: MFA Setup
+  method: GET
+  path: /users/mfa_setup
+  source_operation: openapi/border0-openapi.json#get_users-mfa-setup
+- name: patch_organization-identity-provider
+  description: Update a custom identity provider in the current organization
+  method: PATCH
+  path: /organization/identity_provider
+  source_operation: openapi/border0-openapi.json#patch_organization-identity-provider
+- name: post_organization-identity-provider
+  description: Add a custom identity provider to the current organization
+  method: POST
+  path: /organization/identity_provider
+  source_operation: openapi/border0-openapi.json#post_organization-identity-provider
+- name: post_client-ai-assistants-database
+  description: Generate SQL query from an input that has a question and database schemas
+  method: POST
+  path: /client/ai_assistants/database
+  source_operation: openapi/border0-openapi.json#post_client-ai-assistants-database
+- name: post_client-cda-authorize
+  description: Authorizes a device authorization code.
+  method: POST
+  path: /client/cda/authorize
+  source_operation: openapi/border0-openapi.json#post_client-cda-authorize
+- name: post_client-device-authorizations
+  description: Posts details for a device initiating a new (OAuth2.0) client device authorization flow
+    in exchange for a one-time-use c
+  method: POST
+  path: /client/device_authorizations
+  source_operation: openapi/border0-openapi.json#post_client-device-authorizations
+- name: post_login-refresh
+  description: Refresh API token
+  method: POST
+  path: /login/refresh
+  source_operation: openapi/border0-openapi.json#post_login-refresh
+- name: post_login
+  description: User login
+  method: POST
+  path: /login
+  source_operation: openapi/border0-openapi.json#post_login
+- name: post_mtls-ca-socket-socket-dnsname-csr
+  description: Generate a cert request and sign the CSR with socket's CA cert
+  method: POST
+  path: /mtls-ca/socket/{socket_dnsname}/csr
+  source_operation: openapi/border0-openapi.json#post_mtls-ca-socket-socket-dnsname-csr
+- name: post_mtls-ca-socket-socket-dnsname-ssh
+  description: Generate a signed SSH cert for socket
+  method: POST
+  path: /mtls-ca/socket/{socket_dnsname}/ssh
+  source_operation: openapi/border0-openapi.json#post_mtls-ca-socket-socket-dnsname-ssh
+- name: post_organizations-csr
+  description: Generate a cert request and sign the CSR with organization CA
+  method: POST
+  path: /organizations/csr
+  source_operation: openapi/border0-openapi.json#post_organizations-csr
+- name: post_organizations-sign-ssh
+  description: Generate a signed SSH cert for organization
+  method: POST
+  path: /organizations/sign_ssh
+  source_operation: openapi/border0-openapi.json#post_organizations-sign-ssh
+- name: post_organizations-switch
+  description: Switch Organization
+  method: POST
+  path: /organizations/switch
+  source_operation: openapi/border0-openapi.json#post_organizations-switch
+- name: post_organizations
+  description: Create a new organization
+  method: POST
+  path: /organizations
+  source_operation: openapi/border0-openapi.json#post_organizations
+- name: post_socket-socket-id-or-name-evaluate
+  description: Evaluate policy for a socket
+  method: POST
+  path: /socket/{socket_id_or_name}/evaluate
+  source_operation: openapi/border0-openapi.json#post_socket-socket-id-or-name-evaluate
+- name: post_socket-socket-id-or-name-signkey
+  description: Generate a signed cert for a tunnel
+  method: POST
+  path: /socket/{socket_id_or_name}/signkey
+  source_operation: openapi/border0-openapi.json#post_socket-socket-id-or-name-signkey
+- name: post_socket-socket-id-or-name-tunnel-tunnel-id-signkey
+  description: Generate a signed cert for a tunnel
+  method: POST
+  path: /socket/{socket_id_or_name}/tunnel/{tunnel_id}/signkey
+  source_operation: openapi/border0-openapi.json#post_socket-socket-id-or-name-tunnel-tunnel-id-signkey
+- name: post_socket-socket-id-or-name-update-session
+  description: Update session for a socket
+  method: POST
+  path: /socket/{socket_id_or_name}/update_session
+  source_operation: openapi/border0-openapi.json#post_socket-socket-id-or-name-update-session
+- name: post_user
+  description: Register a new user
+  method: POST
+  path: /user
+  source_operation: openapi/border0-openapi.json#post_user
+- name: post_users-mfa-challenge
+  description: MFA Challenge
+  method: POST
+  path: /users/mfa_challenge
+  source_operation: openapi/border0-openapi.json#post_users-mfa-challenge
+- name: post_users-mfa-confirm
+  description: MFA Setup Confirm
+  method: POST
+  path: /users/mfa_confirm
+  source_operation: openapi/border0-openapi.json#post_users-mfa-confirm
+- name: post_users-organizations-switch
+  description: Switch Organization
+  method: POST
+  path: /users/organizations/switch
+  source_operation: openapi/border0-openapi.json#post_users-organizations-switch
+- name: put_organization-identity-provider-status
+  description: Toggle the status (enable/disable) of an identity provider in the current organization
+  method: PUT
+  path: /organization/identity_provider_status
+  source_operation: openapi/border0-openapi.json#put_organization-identity-provider-status
+- name: put_organizations-settings
+  description: Update organization settings
+  method: PUT
+  path: /organizations/settings
+  source_operation: openapi/border0-openapi.json#put_organizations-settings
+- name: put_organizations-users-leave
+  description: Leave an organization
+  method: PUT
+  path: /organizations/users/leave
+  source_operation: openapi/border0-openapi.json#put_organizations-users-leave
+- name: put_user-password
+  description: Update an existing (authenticated) user's account password
+  method: PUT
+  path: /user/password
+  source_operation: openapi/border0-openapi.json#put_user-password
+- name: put_users-mfa-disabled
+  description: Disable MFA
+  method: PUT
+  path: /users/mfa_disabled
+  source_operation: openapi/border0-openapi.json#put_users-mfa-disabled

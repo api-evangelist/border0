@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.border0.com
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.border0.com/api/v1
+  docs: https://docs.border0.com/reference
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal published deprecation/sunset policy located.
+status_page: https://status.border0.com
+product_updates: https://docs.border0.com/docs/product-updates
+ownership:
+  note: Border0 was acquired by Tailscale (announced March 2026). Border0 continues to operate
+    with no immediate migrations; the team is joining Tailscale to build Privileged Access
+    Management. Source https://tailscale.com/blog/border0-joins-tailscale/
+deprecated_operations: []

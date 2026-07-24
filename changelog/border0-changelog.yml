@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.border0.com/docs/product-updates
+scheme: dated-product-updates
+current: v1
+note: Border0 publishes dated Product Updates rather than semantic API version releases.
+  Recent window captured below.
+entries:
+  - date: '2026-03'
+    type: announcement
+    breaking: false
+    highlights:
+      - Border0 acquired by Tailscale; platforms combine connectivity (Tailscale) with the
+        Border0 application access layer. No immediate migrations for Border0 users.
+  - date: '2026-02'
+    type: enhancement
+    breaking: false
+    highlights:
+      - Border0 iOS app released for identity-based access from iPhone.
+      - RDP Proxy support — SSO login to RDP servers with per-user attributed, logged sessions.
+  - date: '2026-01'
+    type: enhancement
+    breaking: false
+    highlights:
+      - Identity Federation for automated workflows — CI/CD and cloud workloads authenticate
+        with GitHub Actions/GitLab/CircleCI/AWS IAM identity, exchanged for short-lived credentials.
+      - AWS S3 socket — policy-scoped access to S3 buckets with full session recording.
+  - date: '2025-12'
+    type: enhancement
+    breaking: false
+    highlights:
+      - MongoDB web client — agentless browser access to private MongoDB via WebAssembly + WireGuard.
+      - Improved ADFS integration for on-prem identity providers.

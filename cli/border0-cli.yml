@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.border0.com
+name: border0
+description: First-party Border0 command-line tool for installing connectors/nodes, managing
+  sockets and service accounts, and interacting with the Border0 admin API. The binary is
+  distributed from download.border0.com (the legacy border0-cli GitHub repo is no longer public).
+install:
+  - method: direct-download
+    command: sudo curl https://download.border0.com/linux_amd64/border0 -o /usr/local/bin/border0 && sudo chmod +x /usr/local/bin/border0
+    platforms: [linux_amd64, linux_arm64, linux_arm]
+  - method: apt
+    command: |
+      curl -fsSL https://download.border0.com/deb/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/border0.gpg
+      echo "deb [signed-by=/etc/apt/keyrings/border0.gpg] https://download.border0.com/deb/ stable main" | sudo tee /etc/apt/sources.list.d/border0.list
+      sudo apt-get update && sudo apt-get -y install border0
+command_groups:
+  - group: connector
+    description: Install and run a Border0 connector to expose private resources.
+    commands: [connector install, connector start]
+  - group: node
+    description: Install and run a Border0 node (service-account based).
+    commands: [node install, node start]
+  - group: socket
+    description: Manage sockets (protected services) — create, list, connect.
+notes: Connector and node installs are token-driven (service-account tokens minted in the
+  Portal or via API). End-user connectivity now uses the Tailscale client post-acquisition.
