@@ -1,0 +1,902 @@
+{
+  "item": [
+    {
+      "id": "7bd39d99-c41e-4d45-8101-823b98d8a0d0",
+      "name": "Sessions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3efde1dd-e712-44c5-bad5-51e6959ab01d",
+          "name": "Get session stats by type (locations, sockets, users)",
+          "request": {
+            "name": "Get session stats by type (locations, sockets, users)",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions",
+                "stats",
+                ":stats_type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "socket_names",
+                  "value": "<string>,<string>",
+                  "description": "Socket names to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_emails",
+                  "value": "<string>,<string>",
+                  "description": "User emails to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "auth_result",
+                  "value": "<string>",
+                  "description": "Auth result to filter by"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "stats_type",
+                  "description": "(Required) Stats type"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "53e76cdb-f76f-4845-9615-e31bb9ea5715",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "stats",
+                    ":stats_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stats_type",
+                      "description": "(Required) Stats type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"locations\": [\n      {\n        \"city_name\": \"string\",\n        \"client_ip\": \"string\",\n        \"count\": 666,\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"isp\": \"string\",\n        \"latitude\": 1589.0228328925105,\n        \"longitude\": 8567.041358422894,\n        \"metadata\": [\n          2316,\n          2368\n        ],\n        \"region_code\": \"string\",\n        \"region_name\": \"string\"\n      },\n      {\n        \"city_name\": \"string\",\n        \"client_ip\": \"string\",\n        \"count\": 5277,\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"isp\": \"string\",\n        \"latitude\": 5537.544818760371,\n        \"longitude\": 278.63397710093716,\n        \"metadata\": [\n          1396,\n          5028\n        ],\n        \"region_code\": \"string\",\n        \"region_name\": \"string\"\n      }\n    ],\n    \"sockets\": [\n      {\n        \"count\": 8554,\n        \"socket_name\": \"string\",\n        \"socket_type\": \"string\"\n      },\n      {\n        \"count\": 91,\n        \"socket_name\": \"string\",\n        \"socket_type\": \"string\"\n      }\n    ],\n    \"users\": [\n      {\n        \"count\": 4900,\n        \"picture\": \"string\",\n        \"user_email\": \"string\"\n      },\n      {\n        \"count\": 7340,\n        \"picture\": \"string\",\n        \"user_email\": \"string\"\n      }\n    ]\n  },\n  {\n    \"locations\": [\n      {\n        \"city_name\": \"string\",\n        \"client_ip\": \"string\",\n        \"count\": 3716,\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"isp\": \"string\",\n        \"latitude\": 4832.2524386093,\n        \"longitude\": 370.40240151985483,\n        \"metadata\": [\n          7596,\n          6026\n        ],\n        \"region_code\": \"string\",\n        \"region_name\": \"string\"\n      },\n      {\n        \"city_name\": \"string\",\n        \"client_ip\": \"string\",\n        \"count\": 5460,\n        \"country_code\": \"string\",\n        \"country_name\": \"string\",\n        \"isp\": \"string\",\n        \"latitude\": 1771.1766435143438,\n        \"longitude\": 6832.465439797966,\n        \"metadata\": [\n          9,\n          9122\n        ],\n        \"region_code\": \"string\",\n        \"region_name\": \"string\"\n      }\n    ],\n    \"sockets\": [\n      {\n        \"count\": 8360,\n        \"socket_name\": \"string\",\n        \"socket_type\": \"string\"\n      },\n      {\n        \"count\": 7352,\n        \"socket_name\": \"string\",\n        \"socket_type\": \"string\"\n      }\n    ],\n    \"users\": [\n      {\n        \"count\": 8431,\n        \"picture\": \"string\",\n        \"user_email\": \"string\"\n      },\n      {\n        \"count\": 6917,\n        \"picture\": \"string\",\n        \"user_email\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "480f855d-7ca8-4293-8a11-ee693c6f3a7b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "stats",
+                    ":stats_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stats_type",
+                      "description": "(Required) Stats type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4b60041-83e1-4c0f-a02e-7c976b25bfa5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "stats",
+                    ":stats_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stats_type",
+                      "description": "(Required) Stats type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a846257-6e62-4aed-a224-78d7900ab56c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "stats",
+                    ":stats_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stats_type",
+                      "description": "(Required) Stats type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00e40884-239d-46d7-973e-06cccdf52738",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "stats",
+                    ":stats_type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "stats_type",
+                      "description": "(Required) Stats type"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d7edbab-ca2a-4e1e-bd00-d33423fdf8f7",
+          "name": "Show all sessions from a organization",
+          "request": {
+            "name": "Show all sessions from a organization",
+            "description": {},
+            "url": {
+              "path": [
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Current page"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<string>",
+                  "description": "Page size"
+                },
+                {
+                  "disabled": false,
+                  "key": "socket_names",
+                  "value": "<string>,<string>",
+                  "description": "Socket names to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "user_emails",
+                  "value": "<string>,<string>",
+                  "description": "User emails to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "auth_result",
+                  "value": "<string>",
+                  "description": "Auth result to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "afd994e6-0608-4025-886d-ed2137df1aec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"pagination\": {\n      \"actual_page_size\": 6261,\n      \"current_page\": 2137,\n      \"next_page\": 4461,\n      \"records_per_page\": 421,\n      \"total_pages\": 9859,\n      \"total_records\": 5030\n    },\n    \"session_logs\": [\n      {\n        \"audit_log\": true,\n        \"auth_info\": \"string\",\n        \"client_ip\": \"string\",\n        \"client_port\": \"string\",\n        \"country_code\": \"string\",\n        \"country_flag\": \"string\",\n        \"end_time\": \"string\",\n        \"killed\": false,\n        \"last_seen\": \"string\",\n        \"metadata\": {\n          \"ip_metadata\": {\n            \"city_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"name\": \"string\",\n        \"nickname\": \"string\",\n        \"picture\": \"string\",\n        \"recordings\": [\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          },\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          }\n        ],\n        \"result\": \"string\",\n        \"server_name\": \"string\",\n        \"server_port\": \"string\",\n        \"session_id\": \"string\",\n        \"session_type\": \"string\",\n        \"socket_id\": \"string\",\n        \"socket_name\": \"string\",\n        \"sshuser\": \"string\",\n        \"start_time\": \"string\",\n        \"sub\": \"string\",\n        \"user_email\": \"string\"\n      },\n      {\n        \"audit_log\": true,\n        \"auth_info\": \"string\",\n        \"client_ip\": \"string\",\n        \"client_port\": \"string\",\n        \"country_code\": \"string\",\n        \"country_flag\": \"string\",\n        \"end_time\": \"string\",\n        \"killed\": true,\n        \"last_seen\": \"string\",\n        \"metadata\": {\n          \"ip_metadata\": {\n            \"city_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"name\": \"string\",\n        \"nickname\": \"string\",\n        \"picture\": \"string\",\n        \"recordings\": [\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          },\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          }\n        ],\n        \"result\": \"string\",\n        \"server_name\": \"string\",\n        \"server_port\": \"string\",\n        \"session_id\": \"string\",\n        \"session_type\": \"string\",\n        \"socket_id\": \"string\",\n        \"socket_name\": \"string\",\n        \"sshuser\": \"string\",\n        \"start_time\": \"string\",\n        \"sub\": \"string\",\n        \"user_email\": \"string\"\n      }\n    ]\n  },\n  {\n    \"pagination\": {\n      \"actual_page_size\": 3918,\n      \"current_page\": 2709,\n      \"next_page\": 7467,\n      \"records_per_page\": 4939,\n      \"total_pages\": 4059,\n      \"total_records\": 1432\n    },\n    \"session_logs\": [\n      {\n        \"audit_log\": false,\n        \"auth_info\": \"string\",\n        \"client_ip\": \"string\",\n        \"client_port\": \"string\",\n        \"country_code\": \"string\",\n        \"country_flag\": \"string\",\n        \"end_time\": \"string\",\n        \"killed\": false,\n        \"last_seen\": \"string\",\n        \"metadata\": {\n          \"ip_metadata\": {\n            \"city_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"name\": \"string\",\n        \"nickname\": \"string\",\n        \"picture\": \"string\",\n        \"recordings\": [\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          },\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          }\n        ],\n        \"result\": \"string\",\n        \"server_name\": \"string\",\n        \"server_port\": \"string\",\n        \"session_id\": \"string\",\n        \"session_type\": \"string\",\n        \"socket_id\": \"string\",\n        \"socket_name\": \"string\",\n        \"sshuser\": \"string\",\n        \"start_time\": \"string\",\n        \"sub\": \"string\",\n        \"user_email\": \"string\"\n      },\n      {\n        \"audit_log\": true,\n        \"auth_info\": \"string\",\n        \"client_ip\": \"string\",\n        \"client_port\": \"string\",\n        \"country_code\": \"string\",\n        \"country_flag\": \"string\",\n        \"end_time\": \"string\",\n        \"killed\": true,\n        \"last_seen\": \"string\",\n        \"metadata\": {\n          \"ip_metadata\": {\n            \"city_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isp\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"latitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"longitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"region_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"name\": \"string\",\n        \"nickname\": \"string\",\n        \"picture\": \"string\",\n        \"recordings\": [\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          },\n          {\n            \"recording_id\": \"string\",\n            \"start_time\": \"string\"\n          }\n        ],\n        \"result\": \"string\",\n        \"server_name\": \"string\",\n        \"server_port\": \"string\",\n        \"session_id\": \"string\",\n        \"session_type\": \"string\",\n        \"socket_id\": \"string\",\n        \"socket_name\": \"string\",\n        \"sshuser\": \"string\",\n        \"start_time\": \"string\",\n        \"sub\": \"string\",\n        \"user_email\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8598c39c-e11f-46e8-bcf8-5edf6f672afb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ab423ff-3989-45fc-82f7-bd19a088a59d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41220ba5-731d-4f09-9e71-3f871f767c9b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59859859-37a4-4f91-84e4-cd4e5b6bbfe3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dff49bca-53ac-455f-81eb-23375cd4a7f3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "socket_names",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "user_emails",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "auth_result",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 2617\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.border0.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "051eaa52-e319-40d7-899a-95e07f517019",
+    "name": "Border0 Audit Actions Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.\n\nContact Support:\n Name: Border0 Support\n Email: support@border0.com",
+      "type": "text/plain"
+    }
+  }
+}

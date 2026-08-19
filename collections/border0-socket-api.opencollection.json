@@ -1,0 +1,415 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Socket API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Socket",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show one tunnel from a socket by socket ID and tunnel ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/tunnel/:tunnel_id",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Name that the tunnel is associated with"
+              },
+              {
+                "name": "tunnel_id",
+                "value": "",
+                "type": "path",
+                "description": "Tunnel ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show one tunnel from a socket by socket ID and tunnel ID"
+        },
+        {
+          "info": {
+            "name": "Delete one tunnel from a socket by socket ID and tunnel ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/tunnel/:tunnel_id",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Name that the tunnel is associated with"
+              },
+              {
+                "name": "tunnel_id",
+                "value": "",
+                "type": "path",
+                "description": "Tunnel ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete one tunnel from a socket by socket ID and tunnel ID"
+        },
+        {
+          "info": {
+            "name": "Show a socket by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show a socket by ID"
+        },
+        {
+          "info": {
+            "name": "Update a socket by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a socket by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a socket by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a socket by ID"
+        },
+        {
+          "info": {
+            "name": "Show a custom cert from a socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/customcert",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Name from where the custom cert is configured"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show a custom cert from a socket"
+        },
+        {
+          "info": {
+            "name": "Show all tunnels from a socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/tunnel",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Namethat the tunnels are associated with"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all tunnels from a socket"
+        },
+        {
+          "info": {
+            "name": "Create a socket tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/tunnel",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or name that the tunnel will be associated with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a socket tunnel"
+        },
+        {
+          "info": {
+            "name": "Show all sessions from a socket by socket ID, paginated including active and killed sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id/sessions",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all sessions from a socket by socket ID, paginated including active and killed sessions"
+        },
+        {
+          "info": {
+            "name": "Show all sockets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/socket",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all sockets"
+        },
+        {
+          "info": {
+            "name": "Create a socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a socket"
+        },
+        {
+          "info": {
+            "name": "Evaluate policy for a socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/evaluate",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID that the tunnel is associated with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Evaluate policy for a socket"
+        },
+        {
+          "info": {
+            "name": "Generate a signed cert for a tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/signkey",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or Namethat the tunnel is associated with"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a signed cert for a tunnel"
+        },
+        {
+          "info": {
+            "name": "Generate a signed cert for a tunnel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/tunnel/:tunnel_id/signkey",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID or name that the tunnel is associated with"
+              },
+              {
+                "name": "tunnel_id",
+                "value": "",
+                "type": "path",
+                "description": "Tunnel ID that the cert will be signed for"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a signed cert for a tunnel"
+        },
+        {
+          "info": {
+            "name": "Update session for a socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/socket/:socket_id_or_name/update_session",
+            "params": [
+              {
+                "name": "socket_id_or_name",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID that the tunnel is associated with"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update session for a socket"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

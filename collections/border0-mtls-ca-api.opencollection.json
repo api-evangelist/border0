@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Mtls-Ca API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mtls-Ca",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a JWT for CA request on socket's DNS name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/mtls-ca/socket/:socket_dnsname/auth",
+            "headers": [
+              {
+                "name": "X-Auth-Email",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Subject",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Name",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Picture",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Nickname",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "socket_dnsname",
+                "value": "",
+                "type": "path",
+                "description": "Socket DNS name"
+              },
+              {
+                "name": "redirectpath",
+                "value": "",
+                "type": "query",
+                "description": "Redirect URL path"
+              },
+              {
+                "name": "port",
+                "value": "",
+                "type": "query",
+                "description": "Redirect URL port"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a JWT for CA request on socket's DNS name"
+        },
+        {
+          "info": {
+            "name": "Generate a cert request and sign the CSR with socket's CA cert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/mtls-ca/socket/:socket_dnsname/csr",
+            "params": [
+              {
+                "name": "socket_dnsname",
+                "value": "",
+                "type": "path",
+                "description": "Socket DNS name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a cert request and sign the CSR with socket's CA cert"
+        },
+        {
+          "info": {
+            "name": "Generate a signed SSH cert for socket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/mtls-ca/socket/:socket_dnsname/ssh",
+            "params": [
+              {
+                "name": "socket_dnsname",
+                "value": "",
+                "type": "path",
+                "description": "Socket DNS name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a signed SSH cert for socket"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

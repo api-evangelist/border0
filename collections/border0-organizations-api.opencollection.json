@@ -1,0 +1,651 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Organizations API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all custom domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/customdomains",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all custom domains"
+        },
+        {
+          "info": {
+            "name": "Create a custom domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/customdomains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a custom domain"
+        },
+        {
+          "info": {
+            "name": "Update a custom domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/organizations/customdomains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a custom domain"
+        },
+        {
+          "info": {
+            "name": "Delete a custom domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/customdomains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a custom domain"
+        },
+        {
+          "info": {
+            "name": "Delete a service account token in the current organization by service account name and token id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name/tokens/:token_id",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              },
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Token ID (uuid)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a service account token in the current organization by service account name and token id."
+        },
+        {
+          "info": {
+            "name": "Retrieve a service account in the current organization by name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a service account in the current organization by name."
+        },
+        {
+          "info": {
+            "name": "Update a service account in the current organization by name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a service account in the current organization by name."
+        },
+        {
+          "info": {
+            "name": "Delete a service account in the current organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a service account in the current organization."
+        },
+        {
+          "info": {
+            "name": "Describe a notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/notifications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Notification name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Describe a notification"
+        },
+        {
+          "info": {
+            "name": "Update a notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/organizations/notifications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Notification name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a notification"
+        },
+        {
+          "info": {
+            "name": "Delete a notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/notifications/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Notification name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a notification"
+        },
+        {
+          "info": {
+            "name": "Verify the recording storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/recording_storage",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Verify the recording storage"
+        },
+        {
+          "info": {
+            "name": "Create a recording storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/recording_storage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a recording storage"
+        },
+        {
+          "info": {
+            "name": "Unset the organization's recording storage",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/recording_storage",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unset the organization's recording storage"
+        },
+        {
+          "info": {
+            "name": "Disable an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/tokens",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Disable an access token"
+        },
+        {
+          "info": {
+            "name": "Create a new access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new access token"
+        },
+        {
+          "info": {
+            "name": "Disable an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.border0.com/api/v1/organizations/tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Disable an access token"
+        },
+        {
+          "info": {
+            "name": "Retrieve a service account tokens based on a service account name.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name/tokens",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a service account tokens based on a service account name."
+        },
+        {
+          "info": {
+            "name": "Create a service account token in the current organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts/:name/tokens",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Service Account Name (slug)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a service account token in the current organization."
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of all service accounts in the current organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the list of all service accounts in the current organization."
+        },
+        {
+          "info": {
+            "name": "Create a service account in the current organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/iam/service_accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a service account in the current organization."
+        },
+        {
+          "info": {
+            "name": "List all notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/organizations/notifications",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all notifications"
+        },
+        {
+          "info": {
+            "name": "Create a notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/notifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a notification"
+        },
+        {
+          "info": {
+            "name": "Generate a cert request and sign the CSR with organization CA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/csr",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a cert request and sign the CSR with organization CA"
+        },
+        {
+          "info": {
+            "name": "Generate a signed SSH cert for organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/sign_ssh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a signed SSH cert for organization"
+        },
+        {
+          "info": {
+            "name": "Switch Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations/switch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Switch Organization"
+        },
+        {
+          "info": {
+            "name": "Create a new organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new organization"
+        },
+        {
+          "info": {
+            "name": "Update organization settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/organizations/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update organization settings"
+        },
+        {
+          "info": {
+            "name": "Leave an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/organizations/users/leave",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Leave an organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

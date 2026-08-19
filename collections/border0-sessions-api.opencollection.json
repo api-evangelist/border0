@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Sessions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get session stats by type (locations, sockets, users)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/sessions/stats/:stats_type",
+            "params": [
+              {
+                "name": "stats_type",
+                "value": "",
+                "type": "path",
+                "description": "Stats type"
+              },
+              {
+                "name": "socket_names",
+                "value": "",
+                "type": "query",
+                "description": "Socket names to filter by"
+              },
+              {
+                "name": "user_emails",
+                "value": "",
+                "type": "query",
+                "description": "User emails to filter by"
+              },
+              {
+                "name": "auth_result",
+                "value": "",
+                "type": "query",
+                "description": "Auth result to filter by"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get session stats by type (locations, sockets, users)"
+        },
+        {
+          "info": {
+            "name": "Show all sessions from a organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/sessions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              },
+              {
+                "name": "socket_names",
+                "value": "",
+                "type": "query",
+                "description": "Socket names to filter by"
+              },
+              {
+                "name": "user_emails",
+                "value": "",
+                "type": "query",
+                "description": "User emails to filter by"
+              },
+              {
+                "name": "auth_result",
+                "value": "",
+                "type": "query",
+                "description": "Auth result to filter by"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all sessions from a organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

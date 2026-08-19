@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Session API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download a socket's session recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/session/:socket_id/:session_id/session_log",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "Session ID"
+              },
+              {
+                "name": "recording_id",
+                "value": "",
+                "type": "query",
+                "description": "Recording ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Download a socket's session recording"
+        },
+        {
+          "info": {
+            "name": "Show a socket's session info by socket ID and session ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/session/:socket_id/:session_id",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "Session ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show a socket's session info by socket ID and session ID"
+        },
+        {
+          "info": {
+            "name": "Kill a socket's session with socket ID, session ID and json payload with killed flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/session/:socket_id/:session_id",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "Session ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Kill a socket's session with socket ID, session ID and json payload with killed flag"
+        },
+        {
+          "info": {
+            "name": "Show all sessions from a socket by socket ID, including active and killed sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/session/:socket_id",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all sessions from a socket by socket ID, including active and killed sessions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

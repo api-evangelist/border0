@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Stats API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get number of requests by status code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/stats/:socket_id/bandwidth",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp, default to 1 hour ago"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp, default to 30 seconds ago"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Traffic direction, received or sent, default to sent"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get number of requests by status code"
+        },
+        {
+          "info": {
+            "name": "Get number of requests by status code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/stats/:socket_id/requests",
+            "params": [
+              {
+                "name": "socket_id",
+                "value": "",
+                "type": "path",
+                "description": "Socket ID"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp, default to 1 hour ago"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp, default to 30 seconds ago"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get number of requests by status code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

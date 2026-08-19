@@ -1,0 +1,872 @@
+{
+  "item": [
+    {
+      "id": "a7c6a937-f998-4d09-90a3-f92913b219ca",
+      "name": "Policy",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00c753c0-0903-4374-98ca-9ff3901593b3",
+          "name": "delete a policy by id",
+          "request": {
+            "name": "delete a policy by id",
+            "description": {},
+            "url": {
+              "path": [
+                "policy",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "57fe65a0-c98b-4cd1-bee2-86cb22064c11",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"deleted\": false,\n  \"description\": \"string\",\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"org_id\": \"string\",\n  \"org_wide\": true,\n  \"policy_data\": {\n    \"key_0\": false,\n    \"key_1\": \"string\"\n  },\n  \"socket_ids\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e94682e5-cb5b-4ab5-9c72-aacb92cdd742",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54faed88-47ed-4b4a-a3d9-7731b2226864",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88814441-c2be-4783-a2a9-fd3e67200e26",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec44d623-4839-4390-a7a0-22f8d00a96cf",
+          "name": "get a policy by id",
+          "request": {
+            "name": "get a policy by id",
+            "description": {},
+            "url": {
+              "path": [
+                "policy",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "04198f6e-f0fc-4d1e-aaf0-fa5e3d3e8e18",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"deleted\": false,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"org_wide\": true,\n    \"policy_data\": {\n      \"key_0\": false\n    },\n    \"socket_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"created_at\": \"string\",\n    \"deleted\": true,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"org_wide\": false,\n    \"policy_data\": {\n      \"key_0\": \"string\",\n      \"key_1\": 788.0513568963354\n    },\n    \"socket_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "072a1d53-4892-4e4e-b24f-2bdd69278c8d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2dce1385-e2fc-4f9d-8414-42848919d02b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "982f0ce7-76e7-48c9-bb8c-1a1e4cadc671",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97b93e49-daba-4f1c-86f8-04c156ea22fc",
+          "name": "Updates a policy but not updates the associations",
+          "request": {
+            "name": "Updates a policy but not updates the associations",
+            "description": {},
+            "url": {
+              "path": [
+                "policy",
+                ":uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) Policy ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_data\": {\n    \"action\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"condition\": {\n      \"when\": {\n        \"after\": \"<string>\",\n        \"before\": \"<string>\",\n        \"time_of_day_after\": \"<string>\",\n        \"time_of_day_before\": \"<string>\"\n      },\n      \"where\": {\n        \"allowed_ip\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_not\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"who\": {\n        \"domain\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"email\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"group\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"service_account\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"integrations\": [\n      {\n        \"configuration\": {\n          \"key_0\": 8566.37696906168,\n          \"key_1\": \"string\"\n        },\n        \"integration_name\": \"<string>\"\n      },\n      {\n        \"configuration\": {\n          \"key_0\": \"string\"\n        },\n        \"integration_name\": \"<string>\"\n      }\n    ],\n    \"version\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47b69232-8af7-439a-93f9-1e003137c067",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_data\": {\n    \"action\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"condition\": {\n      \"when\": {\n        \"after\": \"<string>\",\n        \"before\": \"<string>\",\n        \"time_of_day_after\": \"<string>\",\n        \"time_of_day_before\": \"<string>\"\n      },\n      \"where\": {\n        \"allowed_ip\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_not\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"who\": {\n        \"domain\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"email\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"group\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"service_account\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"integrations\": [\n      {\n        \"configuration\": {\n          \"key_0\": 7401.851116544839,\n          \"key_1\": 1875.839733770951\n        },\n        \"integration_name\": \"<string>\"\n      },\n      {\n        \"configuration\": {\n          \"key_0\": 2350\n        },\n        \"integration_name\": \"<string>\"\n      }\n    ],\n    \"version\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"deleted\": false,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"org_wide\": true,\n    \"policy_data\": {\n      \"key_0\": false\n    },\n    \"socket_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"created_at\": \"string\",\n    \"deleted\": true,\n    \"description\": \"string\",\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"org_wide\": false,\n    \"policy_data\": {\n      \"key_0\": \"string\",\n      \"key_1\": 788.0513568963354\n    },\n    \"socket_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb7f0c4c-3b6e-479c-86ce-c5fe3b9948c3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_data\": {\n    \"action\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"condition\": {\n      \"when\": {\n        \"after\": \"<string>\",\n        \"before\": \"<string>\",\n        \"time_of_day_after\": \"<string>\",\n        \"time_of_day_before\": \"<string>\"\n      },\n      \"where\": {\n        \"allowed_ip\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_not\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"who\": {\n        \"domain\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"email\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"group\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"service_account\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"integrations\": [\n      {\n        \"configuration\": {\n          \"key_0\": 7401.851116544839,\n          \"key_1\": 1875.839733770951\n        },\n        \"integration_name\": \"<string>\"\n      },\n      {\n        \"configuration\": {\n          \"key_0\": 2350\n        },\n        \"integration_name\": \"<string>\"\n      }\n    ],\n    \"version\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "240502ee-4cba-4e10-891a-478cad727be8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_data\": {\n    \"action\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"condition\": {\n      \"when\": {\n        \"after\": \"<string>\",\n        \"before\": \"<string>\",\n        \"time_of_day_after\": \"<string>\",\n        \"time_of_day_before\": \"<string>\"\n      },\n      \"where\": {\n        \"allowed_ip\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_not\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"who\": {\n        \"domain\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"email\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"group\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"service_account\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"integrations\": [\n      {\n        \"configuration\": {\n          \"key_0\": 7401.851116544839,\n          \"key_1\": 1875.839733770951\n        },\n        \"integration_name\": \"<string>\"\n      },\n      {\n        \"configuration\": {\n          \"key_0\": 2350\n        },\n        \"integration_name\": \"<string>\"\n      }\n    ],\n    \"version\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15b4ee7b-de04-45a3-b9af-00cb9691f5ec",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "policy",
+                    ":uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) Policy ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_data\": {\n    \"action\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"condition\": {\n      \"when\": {\n        \"after\": \"<string>\",\n        \"before\": \"<string>\",\n        \"time_of_day_after\": \"<string>\",\n        \"time_of_day_before\": \"<string>\"\n      },\n      \"where\": {\n        \"allowed_ip\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"country_not\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"who\": {\n        \"domain\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"email\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"group\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"service_account\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"integrations\": [\n      {\n        \"configuration\": {\n          \"key_0\": 7401.851116544839,\n          \"key_1\": 1875.839733770951\n        },\n        \"integration_name\": \"<string>\"\n      },\n      {\n        \"configuration\": {\n          \"key_0\": 2350\n        },\n        \"integration_name\": \"<string>\"\n      }\n    ],\n    \"version\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 5747\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.border0.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "725881cf-5e08-4d4b-8cc0-dffcb3e2f24a",
+    "name": "Border0 Audit Actions Policy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.\n\nContact Support:\n Name: Border0 Support\n Email: support@border0.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1761 @@
+{
+  "item": [
+    {
+      "id": "4dec0981-1e9e-4115-a325-17a34f105718",
+      "name": "Organization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "448b18a8-fa2f-477e-9afe-74eaa7dbb610",
+          "name": "Remove a custom identity provider from the current organization",
+          "request": {
+            "name": "Remove a custom identity provider from the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_provider",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Identity provider name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fc1857fd-ce3f-4cff-8cad-fa42f2b44272",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "047c3d00-ede7-4f70-9efa-0aa9dd098c3a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37db11f9-7c9d-4354-9138-97dc08540d2c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d59ec5f0-47e7-4334-8e80-1b07464ed119",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec488a25-3fa7-4f74-a45a-d130d8939509",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b559e165-61af-4c6f-83fc-e429aa4b3d7c",
+          "name": "Get a custom identity provider for the current organization",
+          "request": {
+            "name": "Get a custom identity provider for the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_provider",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Identity provider name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75f1b7bb-70b6-4a4d-afc1-53e5ab107756",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"display_name\": \"string\",\n  \"enabled\": true,\n  \"google_workspace_configuration\": {\n    \"client_id\": \"string\",\n    \"client_secret\": \"string\",\n    \"google_workspace_domain\": \"string\"\n  },\n  \"logo_url\": \"string\",\n  \"name\": \"string\",\n  \"oidc_configuration\": {\n    \"client_id\": \"string\",\n    \"client_secret\": \"string\",\n    \"discovery_url\": \"string\",\n    \"oidc_flow_type\": \"string\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"string\",\n    \"client_secret\": \"string\",\n    \"okta_domain\": \"string\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"string\",\n    \"request_signing_algorithm\": \"string\",\n    \"request_signing_digest_algorithm\": \"string\",\n    \"request_signing_enabled\": true,\n    \"request_template\": \"string\",\n    \"sign_in_url\": \"string\",\n    \"signing_certificate\": \"string\"\n  },\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "401c52bd-4585-436c-8e75-c14f6f5d6623",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecb0a245-7815-4253-9427-f65171c23162",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eca5721d-ab73-4d90-9c21-3a36819e7da3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3efbc073-52a9-4d52-8c70-96d5aaaef4da",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Identity provider name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "196dc2e6-57a1-4e92-8542-fc31f64d2170",
+          "name": "List all identity providers for the current organization",
+          "request": {
+            "name": "List all identity providers for the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "eb0ab676-8708-4411-8542-1e22bbb91fb8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"display_name\": \"string\",\n      \"enabled\": false,\n      \"google_workspace_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"google_workspace_domain\": \"string\"\n      },\n      \"logo_url\": \"string\",\n      \"name\": \"string\",\n      \"oidc_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"discovery_url\": \"string\",\n        \"oidc_flow_type\": \"string\"\n      },\n      \"okta_workforce_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"okta_domain\": \"string\"\n      },\n      \"saml_configuration\": {\n        \"request_protocol_binding\": \"string\",\n        \"request_signing_algorithm\": \"string\",\n        \"request_signing_digest_algorithm\": \"string\",\n        \"request_signing_enabled\": false,\n        \"request_template\": \"string\",\n        \"sign_in_url\": \"string\",\n        \"signing_certificate\": \"string\"\n      },\n      \"type\": \"string\"\n    },\n    {\n      \"display_name\": \"string\",\n      \"enabled\": true,\n      \"google_workspace_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"google_workspace_domain\": \"string\"\n      },\n      \"logo_url\": \"string\",\n      \"name\": \"string\",\n      \"oidc_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"discovery_url\": \"string\",\n        \"oidc_flow_type\": \"string\"\n      },\n      \"okta_workforce_configuration\": {\n        \"client_id\": \"string\",\n        \"client_secret\": \"string\",\n        \"okta_domain\": \"string\"\n      },\n      \"saml_configuration\": {\n        \"request_protocol_binding\": \"string\",\n        \"request_signing_algorithm\": \"string\",\n        \"request_signing_digest_algorithm\": \"string\",\n        \"request_signing_enabled\": false,\n        \"request_template\": \"string\",\n        \"sign_in_url\": \"string\",\n        \"signing_certificate\": \"string\"\n      },\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e83c57f-8f12-4647-b1ae-e105112fc62a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88409726-5b39-4f2e-b38a-88fa253e3d4c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0122440-a209-4b0c-a80d-2192136f4a0c",
+          "name": "Update a custom identity provider in the current organization",
+          "request": {
+            "name": "Update a custom identity provider in the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d58ce04-7b72-4d76-b3d7-89495275db69",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9681b5a7-44a6-47a0-9f1a-85e8662f3d3c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8c24ffa-be92-4f02-89fe-b4022ca6caa7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e656b5dd-f3a5-4571-a954-7f16dd0b8475",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d251b38-3f5f-44cd-a5fe-3961deee4f04",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69841edc-a465-4313-848b-37197bbab572",
+          "name": "Add a custom identity provider to the current organization",
+          "request": {
+            "name": "Add a custom identity provider to the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_provider"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cfcfb14a-1657-484e-a66c-e654ea0fa440",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"google_workspace_response\": {\n    \"must_allow_javascript_origin\": \"string\",\n    \"must_allow_redirect_url\": \"string\"\n  },\n  \"oidc_response\": {\n    \"must_allow_redirect_url\": \"string\"\n  },\n  \"okta_workforce_response\": {\n    \"must_allow_redirect_url\": \"string\"\n  },\n  \"saml_response\": {\n    \"must_allow_redirect_url\": \"string\",\n    \"request_signing_certificate_url\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac2e8b2f-8e0d-4814-89fa-91d275cf0ecd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74d0a5ed-69f5-4694-bd9f-33a865750c38",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e6a1b45-6d1e-44a9-af5e-3196e8b68e17",
+              "name": "Precondition Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66ff420b-afee-4f11-9c1f-88a98da21a9c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"display_name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"google_workspace_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"google_workspace_domain\": \"<string>\"\n  },\n  \"logo_url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"oidc_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"discovery_url\": \"<string>\",\n    \"oidc_flow_type\": \"<string>\"\n  },\n  \"okta_workforce_configuration\": {\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"okta_domain\": \"<string>\"\n  },\n  \"saml_configuration\": {\n    \"request_protocol_binding\": \"<string>\",\n    \"request_signing_algorithm\": \"<string>\",\n    \"request_signing_digest_algorithm\": \"<string>\",\n    \"request_signing_enabled\": \"<boolean>\",\n    \"request_template\": \"<string>\",\n    \"sign_in_url\": \"<string>\",\n    \"signing_certificate\": \"<string>\"\n  },\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0945d9c-922c-4553-9059-53bce2790637",
+          "name": "Toggle the status (enable/disable) of an identity provider in the current organization",
+          "request": {
+            "name": "Toggle the status (enable/disable) of an identity provider in the current organization",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                "identity_provider_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enable\": \"<boolean>\",\n  \"global\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9ba5f02a-6afb-4773-8fc9-0a2f8a56f2c2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enable\": \"<boolean>\",\n  \"global\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6152c950-327c-4c5e-8430-aa86dfa1a50f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enable\": \"<boolean>\",\n  \"global\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b1cfb06-542a-4857-8385-8472faa5d73e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enable\": \"<boolean>\",\n  \"global\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9af1b674-6180-4ab2-89ed-4f124629f9d0",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    "identity_provider_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enable\": \"<boolean>\",\n  \"global\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error_message\": \"string\",\n  \"status_code\": 1957\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.border0.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "20194edc-f3eb-4ca2-8de9-f1ce9b1ad761",
+    "name": "Border0 Audit Actions Organization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.\n\nContact Support:\n Name: Border0 Support\n Email: support@border0.com",
+      "type": "text/plain"
+    }
+  }
+}

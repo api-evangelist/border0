@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions User API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Confirm and activate user with a temporary token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/user/confirm/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Temporary token"
+              }
+            ]
+          },
+          "docs": "Confirm and activate user with a temporary token"
+        },
+        {
+          "info": {
+            "name": "Show user info by user ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/user/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show user info by user ID"
+        },
+        {
+          "info": {
+            "name": "Update an existing user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/user/:user_id",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing user"
+        },
+        {
+          "info": {
+            "name": "Register a new user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new user"
+        },
+        {
+          "info": {
+            "name": "Update an existing (authenticated) user's account password",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/user/password",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing (authenticated) user's account password"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

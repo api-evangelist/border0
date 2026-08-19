@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show all actors from a given organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/audit_actions/actors",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all actors from a given organization"
+        },
+        {
+          "info": {
+            "name": "Show all audit logs from organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/audit_actions",
+            "params": [
+              {
+                "name": "actor_email",
+                "value": "",
+                "type": "query",
+                "description": "Action Email"
+              },
+              {
+                "name": "resource_type",
+                "value": "",
+                "type": "query",
+                "description": "Resource Type"
+              },
+              {
+                "name": "resource_id",
+                "value": "",
+                "type": "query",
+                "description": "Resource id"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page"
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show all audit logs from organization"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

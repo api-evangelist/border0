@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Client API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate a client with headers against organization email",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/client/auth/org/:slug",
+            "headers": [
+              {
+                "name": "X-Auth-Email",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Subject",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Name",
+                "value": ""
+              },
+              {
+                "name": "X-Auth-Picture",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "slug",
+                "value": "",
+                "type": "path",
+                "description": "Organization email address the client will authenticate against"
+              },
+              {
+                "name": "redirectpath",
+                "value": "",
+                "type": "query",
+                "description": "Redirect URL path"
+              },
+              {
+                "name": "port",
+                "value": "",
+                "type": "query",
+                "description": "Redirect URL port"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Authenticate a client with headers against organization email"
+        },
+        {
+          "info": {
+            "name": "Fetches a client token in exchange for a device authorization code previously authorized via the (OAuth2.0) client device authorization flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/client/cda/get_token",
+            "headers": [
+              {
+                "name": "x-client-device-authorization-code",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Fetches a client token in exchange for a device authorization code previously authorized via the (OAuth2.0) client device authorization flow"
+        },
+        {
+          "info": {
+            "name": "Show socket client resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/client/resources",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Show socket client resources"
+        },
+        {
+          "info": {
+            "name": "Generate SQL query from an input that has a question and database schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/client/ai_assistants/database",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate SQL query from an input that has a question and database schemas"
+        },
+        {
+          "info": {
+            "name": "Authorizes a device authorization code.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/client/cda/authorize",
+            "headers": [
+              {
+                "name": "x-client-device-authorization-code",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Authorizes a device authorization code."
+        },
+        {
+          "info": {
+            "name": "Posts details for a device initiating a new (OAuth2.0) client device authorization flow in exchange for a one-time-use code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/client/device_authorizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts details for a device initiating a new (OAuth2.0) client device authorization flow in exchange for a one-time-use code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

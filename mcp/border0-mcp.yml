@@ -458,3 +458,9 @@ tools:
   method: PUT
   path: /users/mfa_disabled
   source_operation: openapi/border0-openapi.json#put_users-mfa-disabled
+deployment:
+  mode: none
+  verified: derived
+  tools: 89
+  checked: '2026-08-12'
+  source: catalog MCP census

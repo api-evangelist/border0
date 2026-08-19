@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Border0 Audit Actions Users API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "MFA Setup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.border0.com/api/v1/users/mfa_setup"
+          },
+          "docs": "MFA Setup"
+        },
+        {
+          "info": {
+            "name": "MFA Challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/users/mfa_challenge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "MFA Challenge"
+        },
+        {
+          "info": {
+            "name": "MFA Setup Confirm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/users/mfa_confirm",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "MFA Setup Confirm"
+        },
+        {
+          "info": {
+            "name": "Switch Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.border0.com/api/v1/users/organizations/switch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Switch Organization"
+        },
+        {
+          "info": {
+            "name": "Disable MFA",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.border0.com/api/v1/users/mfa_disabled",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disable MFA"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
