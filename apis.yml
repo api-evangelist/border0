@@ -66,6 +66,8 @@ apis:
   humanURL: https://docs.border0.com/reference
   baseURL: https://api.border0.com/api/v1
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -116,6 +118,8 @@ apis:
   humanURL: https://docs.border0.com/reference
   baseURL: https://api.border0.com/api/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -196,6 +200,8 @@ apis:
   humanURL: https://docs.border0.com/reference
   baseURL: https://api.border0.com/api/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
