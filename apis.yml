@@ -11,6 +11,18 @@ description: >-
   tokens, sessions, and audit logs, and is complemented by an official Go SDK, a Terraform
   provider, a CLI, and GitHub Actions. Border0 was acquired by Tailscale in March 2026.
 url: https://raw.githubusercontent.com/api-evangelist/border0/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
