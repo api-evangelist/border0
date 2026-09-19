@@ -54,6 +54,17 @@ tags:
 - Infrastructure
 - VPN
 - SSH
+- Database
+- Kubernetes
+- Company
+tags_raw:
+- Zero Trust
+- Network Access
+- Security
+- Identity and Access Management
+- Infrastructure
+- VPN
+- SSH
 - Databases
 - Kubernetes
 - Company
@@ -163,6 +174,8 @@ apis:
   humanURL: https://docs.border0.com/reference
   baseURL: https://api.border0.com/api/v1
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
