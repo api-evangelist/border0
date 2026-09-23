@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Border0 Audit Actions Sessions API
+  title: Border0 Sessions API
   description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
   version: '1.0'
   contact:
@@ -176,25 +176,15 @@ paths:
       - Sessions
 components:
   schemas:
-    metadata.IPMetadata:
+    serializer.SessionLogPublicPaginatedExtended:
       type: object
       properties:
-        city_name:
-          type: string
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        region_code:
-          type: string
-        region_name:
-          type: string
+        pagination:
+          $ref: '#/components/schemas/models.PaginationResult'
+        session_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
     serializer.SessionLogLocationStats:
       type: object
       properties:
@@ -221,6 +211,51 @@ components:
         region_code:
           type: string
         region_name:
+          type: string
+    models.SessionLogSocketStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        socket_name:
+          type: string
+        socket_type:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.SessionLogStats:
+      type: object
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
+        sockets:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogSocketStats'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogUserStats'
+    serializer.SessionLogMetadata:
+      type: object
+      properties:
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
+    models.SessionLogUserStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        picture:
+          type: string
+        user_email:
           type: string
     serializer.SessionLogPublicExtended:
       type: object
@@ -277,60 +312,6 @@ components:
           type: string
         user_email:
           type: string
-    serializer.Recording:
-      type: object
-      properties:
-        recording_id:
-          type: string
-        start_time:
-          type: string
-    models.SessionLogUserStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        picture:
-          type: string
-        user_email:
-          type: string
-    serializer.SessionLogStats:
-      type: object
-      properties:
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
-        sockets:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogSocketStats'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogUserStats'
-    serializer.SessionLogPublicPaginatedExtended:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/models.PaginationResult'
-        session_logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
-    serializer.SessionLogMetadata:
-      type: object
-      properties:
-        ip_metadata:
-          $ref: '#/components/schemas/metadata.IPMetadata'
-    models.SessionLogSocketStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        socket_name:
-          type: string
-        socket_type:
-          type: string
     models.PaginationResult:
       type: object
       properties:
@@ -346,13 +327,32 @@ components:
           type: integer
         total_records:
           type: integer
-    restful.ErrorResponse:
+    serializer.Recording:
       type: object
       properties:
-        error_message:
+        recording_id:
           type: string
-        status_code:
-          type: integer
+        start_time:
+          type: string
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
+          type: string
   securitySchemes:
     Border0_Token:
       type: apiKey

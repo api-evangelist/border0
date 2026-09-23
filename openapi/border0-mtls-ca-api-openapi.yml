@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Border0 Audit Actions Mtls-Ca API
+  title: Border0 Mtls Ca API
   description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
   version: '1.0'
   contact:
@@ -191,6 +191,13 @@ paths:
       - Mtls-Ca
 components:
   schemas:
+    v1.certificateSigningRequest:
+      type: object
+      required:
+      - csr
+      properties:
+        csr:
+          type: string
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -202,13 +209,6 @@ components:
       type: object
       properties:
         ssh_public_key:
-          type: string
-    v1.certificateSigningRequest:
-      type: object
-      required:
-      - csr
-      properties:
-        csr:
           type: string
   securitySchemes:
     Border0_Token:

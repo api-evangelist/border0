@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Border0 Audit Actions Client API
+  title: Border0 Client API
   description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
   version: '1.0'
   contact:
@@ -89,7 +89,7 @@ paths:
       - Client
   /client/cda/get_token:
     get:
-      summary: Fetches a client token in exchange for a device authorization code previously authorized via the (OAuth2.0) client device authorization flow
+      summary: Fetches a client token in exchange for a device authorization code previously…
       parameters:
       - description: API-issued client device authorization code
         name: x-client-device-authorization-code
@@ -192,7 +192,7 @@ paths:
       - Client
   /client/cda/authorize:
     post:
-      summary: Authorizes a device authorization code.
+      summary: Authorizes a device authorization code
       parameters:
       - description: API-issued client device authorization code
         name: x-client-device-authorization-code
@@ -224,7 +224,7 @@ paths:
       - Client
   /client/device_authorizations:
     post:
-      summary: Posts details for a device initiating a new (OAuth2.0) client device authorization flow in exchange for a one-time-use code
+      summary: Posts details for a device initiating a new (OAuth2.0) client device…
       requestBody:
         content:
           application/json:
@@ -256,30 +256,41 @@ paths:
       - Client
 components:
   schemas:
-    v1.clientResourceResponse:
+    llm.DatabaseAgentInput:
       type: object
       properties:
-        ip_addresses:
-          type: array
-          items:
-            type: string
-        refresh_hint:
+        database_name:
+          type: string
+        database_type:
+          type: string
+        question:
+          type: string
+        schemas:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
           type: integer
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/v1.clientResourceData'
-    v1.getClientDeviceAuthorizationResponse:
+    v1.postClientDeviceAuthorizationResponse:
       type: object
       properties:
-        client_token:
+        authorization_endpoint:
           type: string
-        device_ip:
+        authorization_endpoint_code_query_param:
           type: string
-        device_os:
+        code:
           type: string
-        status:
+        token_endpoint:
           type: string
+        token_endpoint_code_header:
+          type: string
+        token_endpoint_poll_interval:
+          type: integer
+        token_endpoint_poll_max_attempts:
+          type: integer
     v1.clientResourceData:
       type: object
       properties:
@@ -319,40 +330,12 @@ components:
           type: object
           additionalProperties:
             type: string
-    v1.postClientDeviceAuthorizationResponse:
-      type: object
-      properties:
-        authorization_endpoint:
-          type: string
-        authorization_endpoint_code_query_param:
-          type: string
-        code:
-          type: string
-        token_endpoint:
-          type: string
-        token_endpoint_code_header:
-          type: string
-        token_endpoint_poll_interval:
-          type: integer
-        token_endpoint_poll_max_attempts:
-          type: integer
     v1.postClientDeviceAuthorizationRequest:
       type: object
       properties:
         device_os:
           type: string
         organization:
-          type: string
-    llm.DatabaseAgentInput:
-      type: object
-      properties:
-        database_name:
-          type: string
-        database_type:
-          type: string
-        question:
-          type: string
-        schemas:
           type: string
     v1.BaseErrorResponse:
       type: object
@@ -361,13 +344,30 @@ components:
           type: string
         status_code:
           type: integer
-    restful.ErrorResponse:
+    v1.getClientDeviceAuthorizationResponse:
       type: object
       properties:
-        error_message:
+        client_token:
           type: string
-        status_code:
+        device_ip:
+          type: string
+        device_os:
+          type: string
+        status:
+          type: string
+    v1.clientResourceResponse:
+      type: object
+      properties:
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        refresh_hint:
           type: integer
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/v1.clientResourceData'
   securitySchemes:
     Border0_Token:
       type: apiKey

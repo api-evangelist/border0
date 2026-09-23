@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Border0 Audit Actions Organizations API
+  title: Border0 Organizations API
   description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
   version: '1.0'
   contact:
@@ -192,7 +192,7 @@ paths:
     delete:
       security:
       - Border0_Token: []
-      summary: Delete a service account token in the current organization by service account name and token id.
+      summary: Delete a service account token in the current organization by service account…
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -234,7 +234,7 @@ paths:
     delete:
       security:
       - Border0_Token: []
-      summary: Delete a service account in the current organization.
+      summary: Delete a service account in the current organization
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -269,7 +269,7 @@ paths:
     get:
       security:
       - Border0_Token: []
-      summary: Retrieve a service account in the current organization by name.
+      summary: Retrieve a service account in the current organization by name
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -308,7 +308,7 @@ paths:
     put:
       security:
       - Border0_Token: []
-      summary: Update a service account in the current organization by name.
+      summary: Update a service account in the current organization by name
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -720,7 +720,7 @@ paths:
     get:
       security:
       - Border0_Token: []
-      summary: Retrieve a service account tokens based on a service account name.
+      summary: Retrieve a service account tokens based on a service account name
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -759,7 +759,7 @@ paths:
     post:
       security:
       - Border0_Token: []
-      summary: Create a service account token in the current organization.
+      summary: Create a service account token in the current organization
       parameters:
       - description: Service Account Name (slug)
         name: name
@@ -806,7 +806,7 @@ paths:
     get:
       security:
       - Border0_Token: []
-      summary: Retrieve the list of all service accounts in the current organization.
+      summary: Retrieve the list of all service accounts in the current organization
       responses:
         '200':
           description: OK
@@ -838,7 +838,7 @@ paths:
     post:
       security:
       - Border0_Token: []
-      summary: Create a service account in the current organization.
+      summary: Create a service account in the current organization
       requestBody:
         content:
           application/json:
@@ -1190,12 +1190,67 @@ paths:
       - Organizations
 components:
   schemas:
-    v1.mtlsSSHRequest:
+    v1.createToken:
       type: object
       properties:
-        ssh_public_key:
+        expires_at:
+          type: integer
+        name:
           type: string
-    v1.getServiceAccountsTokensResponse:
+        role:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.certificateSigningRequest:
+      type: object
+      required:
+      - csr
+      properties:
+        csr:
+          type: string
+    v1.createOrg:
+      type: object
+      properties:
+        name:
+          type: string
+        subdomain:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.notificationUpdateRequest:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        webhook_url:
+          type: string
+    v1.deleteToken:
+      type: object
+      properties:
+        id:
+          type: string
+    v1.getServiceAccountsResponse:
       type: object
       properties:
         items:
@@ -1203,12 +1258,14 @@ components:
         list:
           type: array
           items:
-            $ref: '#/components/schemas/serializer.TokenSummary'
-    v1.orgSettings:
+            $ref: '#/components/schemas/serviceaccount.Slim'
+    v1.OrganizationRequest:
       type: object
       properties:
-        mfa_required:
-          type: boolean
+        name:
+          type: string
+        org_id:
+          type: string
     v1.postServiceAccountTokenResponse:
       type: object
       properties:
@@ -1222,62 +1279,53 @@ components:
           type: string
         token:
           type: string
-    v1.AwsS3Config:
+    v1.serviceAccountTokenDetailsPayload:
       type: object
       properties:
-        bucket_name:
-          type: string
-        external_id:
-          type: string
-        region:
-          type: string
-        role_arn:
-          type: string
-    v1.deleteToken:
-      type: object
-      properties:
-        id:
-          type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    serializer.TokenSummary:
-      type: object
-      properties:
-        connector:
-          type: string
-        created_by:
-          type: string
-        directory_service:
-          type: string
         expires_at:
+          description: Token expiry in UNIX timestamp format.
+          type: integer
+        name:
+          description: Name (not unique) for the token.
+          type: string
+    v1.mtlsSSHRequest:
+      type: object
+      properties:
+        ssh_public_key:
+          type: string
+    v1.serviceAccountUpdatePayload:
+      type: object
+      properties:
+        active:
+          description: Whether the service account is active or inactive.
+          type: boolean
+        description:
+          description: A short descriptive text about the service account's usage.
+          type: string
+        name:
+          description: Name (unique slug) for the service account.
+          type: string
+        role:
+          description: Border0 permission level, may be "client", "member" or "admin"
+          type: string
+    serviceaccount.Full:
+      type: object
+      properties:
+        active:
+          type: boolean
+        created_at:
+          type: string
+        description:
+          type: string
+        last_seen_at:
           type: string
         name:
           type: string
         role:
-          description: will be deprecated
           type: string
-        service_account:
+        service_account_id:
           type: string
-        token_id:
-          type: string
-    v1.recordingStorageRequest:
-      type: object
-      properties:
-        aws_s3_config:
-          $ref: '#/components/schemas/v1.AwsS3Config'
-        type:
-          type: string
-    serializer.OrganizationCustomDomain:
-      type: object
-      properties:
-        default:
-          type: boolean
-        domain:
+        updated_at:
           type: string
     v1.notificationRequest:
       type: object
@@ -1301,25 +1349,7 @@ components:
           type: string
         webhook_url:
           type: string
-    serializer.OrganizationRecordingStorage:
-      type: object
-      properties:
-        aws_s3_config:
-          $ref: '#/components/schemas/serializer.awsS3Config'
-        read_error:
-          type: string
-        type:
-          type: string
-    v1.getServiceAccountsResponse:
-      type: object
-      properties:
-        items:
-          type: integer
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/serviceaccount.Slim'
-    serviceaccount.Full:
+    serviceaccount.Slim:
       type: object
       properties:
         active:
@@ -1338,32 +1368,96 @@ components:
           type: string
         updated_at:
           type: string
-    v1.switchOrgPayload:
+    serializer.awsS3Config:
       type: object
-      required:
-      - org_name
       properties:
-        org_name:
+        bucket_name:
           type: string
-          maxLength: 200
-          minLength: 1
-    v1.notificationUpdateRequest:
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
+    v1.serviceAccountCreatePayload:
       type: object
       properties:
-        email_recipients:
+        description:
+          description: A short descriptive text about the service account's usage.
+          type: string
+        name:
+          description: Name (unique slug) for the service account.
+          type: string
+        role:
+          description: Border0 permission level, may be "client", "member" or "admin"
+          type: string
+    v1.AwsS3Config:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
+    serializer.OrganizationRecordingStorage:
+      type: object
+      properties:
+        aws_s3_config:
+          $ref: '#/components/schemas/serializer.awsS3Config'
+        read_error:
+          type: string
+        type:
+          type: string
+    v1.getServiceAccountsTokensResponse:
+      type: object
+      properties:
+        items:
+          type: integer
+        list:
           type: array
           items:
-            type: string
-        enabled:
+            $ref: '#/components/schemas/serializer.TokenSummary'
+    serializer.TokenSummary:
+      type: object
+      properties:
+        connector:
+          type: string
+        created_by:
+          type: string
+        directory_service:
+          type: string
+        expires_at:
+          type: string
+        name:
+          type: string
+        role:
+          description: will be deprecated
+          type: string
+        service_account:
+          type: string
+        token_id:
+          type: string
+    v1.customDomain:
+      type: object
+      properties:
+        default:
           type: boolean
-        events:
-          type: array
-          items:
-            type: string
-        integration_configuration:
-          type: object
-          additionalProperties: true
-        webhook_url:
+        domain:
+          type: string
+    v1.orgSettings:
+      type: object
+      properties:
+        mfa_required:
+          type: boolean
+    v1.recordingStorageRequest:
+      type: object
+      properties:
+        aws_s3_config:
+          $ref: '#/components/schemas/v1.AwsS3Config'
+        type:
           type: string
     serializer.OrganizationNotification:
       type: object
@@ -1387,116 +1481,22 @@ components:
           type: string
         webhook_url:
           type: string
-    v1.certificateSigningRequest:
-      type: object
-      required:
-      - csr
-      properties:
-        csr:
-          type: string
-    serviceaccount.Slim:
-      type: object
-      properties:
-        active:
-          type: boolean
-        created_at:
-          type: string
-        description:
-          type: string
-        last_seen_at:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-        service_account_id:
-          type: string
-        updated_at:
-          type: string
-    v1.OrganizationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        org_id:
-          type: string
-    v1.serviceAccountTokenDetailsPayload:
-      type: object
-      properties:
-        expires_at:
-          description: Token expiry in UNIX timestamp format.
-          type: integer
-        name:
-          description: Name (not unique) for the token.
-          type: string
-    v1.createOrg:
-      type: object
-      properties:
-        name:
-          type: string
-        subdomain:
-          type: string
-    v1.customDomain:
+    serializer.OrganizationCustomDomain:
       type: object
       properties:
         default:
           type: boolean
         domain:
           type: string
-    restful.ErrorResponse:
+    v1.switchOrgPayload:
       type: object
+      required:
+      - org_name
       properties:
-        error_message:
+        org_name:
           type: string
-        status_code:
-          type: integer
-    serializer.awsS3Config:
-      type: object
-      properties:
-        bucket_name:
-          type: string
-        external_id:
-          type: string
-        region:
-          type: string
-        role_arn:
-          type: string
-    v1.createToken:
-      type: object
-      properties:
-        expires_at:
-          type: integer
-        name:
-          type: string
-        role:
-          type: string
-    v1.serviceAccountUpdatePayload:
-      type: object
-      properties:
-        active:
-          description: Whether the service account is active or inactive.
-          type: boolean
-        description:
-          description: A short descriptive text about the service account's usage.
-          type: string
-        name:
-          description: Name (unique slug) for the service account.
-          type: string
-        role:
-          description: Border0 permission level, may be "client", "member" or "admin"
-          type: string
-    v1.serviceAccountCreatePayload:
-      type: object
-      properties:
-        description:
-          description: A short descriptive text about the service account's usage.
-          type: string
-        name:
-          description: Name (unique slug) for the service account.
-          type: string
-        role:
-          description: Border0 permission level, may be "client", "member" or "admin"
-          type: string
+          maxLength: 200
+          minLength: 1
   securitySchemes:
     Border0_Token:
       type: apiKey

@@ -1,21 +1,7 @@
 {
   "provider": "border0",
   "sources": [
-    "border0-audit-actions-api-openapi.yml",
-    "border0-client-api-openapi.yml",
-    "border0-connect-api-openapi.yml",
-    "border0-login-api-openapi.yml",
-    "border0-mtls-ca-api-openapi.yml",
-    "border0-organization-api-openapi.yml",
-    "border0-organizations-api-openapi.yml",
-    "border0-policies-api-openapi.yml",
-    "border0-policy-api-openapi.yml",
-    "border0-session-api-openapi.yml",
-    "border0-sessions-api-openapi.yml",
-    "border0-socket-api-openapi.yml",
-    "border0-stats-api-openapi.yml",
-    "border0-user-api-openapi.yml",
-    "border0-users-api-openapi.yml"
+    "_original/border0-openapi.json"
   ],
   "outputs": [
     "border0-audit-actions-api-openapi.yml",
@@ -36,9 +22,44 @@
   ],
   "archived": [],
   "errors": [
-    "border0-socket-api-openapi.yml: dangling $ref: #/components/requestBodies/v1.signTunnelKeyRequest"
+    "border0-openapi.json: dangling $ref: #/components/requestBodies/v1.signTunnelKeyRequest"
   ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "border0-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "border0-openapi.json: declared missing tag: Audit Actions",
+    "border0-openapi.json: declared missing tag: Client",
+    "border0-openapi.json: declared missing tag: Connect",
+    "border0-openapi.json: declared missing tag: Login",
+    "border0-openapi.json: declared missing tag: Mtls-Ca",
+    "border0-openapi.json: declared missing tag: Organization",
+    "border0-openapi.json: declared missing tag: Organizations",
+    "border0-openapi.json: declared missing tag: Policies",
+    "border0-openapi.json: declared missing tag: Policy",
+    "border0-openapi.json: declared missing tag: Session",
+    "border0-openapi.json: declared missing tag: Sessions",
+    "border0-openapi.json: declared missing tag: Socket",
+    "border0-openapi.json: declared missing tag: Stats",
+    "border0-openapi.json: declared missing tag: User",
+    "border0-openapi.json: declared missing tag: Users",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "border0-audit-actions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-client-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-connect-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-login-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-mtls-ca-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-policies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-policy-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-session-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-socket-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "border0-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Border0 Audit Actions Session API
+  title: Border0 Session API
   description: Border0 is an identity-aware Zero Trust network access platform for securing access to servers, databases, Kubernetes clusters, and internal web services. This REST API manages sockets (protected services), policies, connectors, organizations, identity providers, service accounts, sessions, and audit logs.
   version: '1.0'
   contact:
@@ -118,7 +118,7 @@ paths:
     put:
       security:
       - Border0_Token: []
-      summary: Kill a socket's session with socket ID, session ID and json payload with killed flag
+      summary: Kill a socket's session with socket ID, session ID and json payload with killed…
       parameters:
       - description: Socket ID
         name: socket_id
@@ -177,7 +177,7 @@ paths:
     get:
       security:
       - Border0_Token: []
-      summary: Show all sessions from a socket by socket ID, including active and killed sessions
+      summary: Show all sessions from a socket by socket ID, including active and killed…
       parameters:
       - description: Socket ID
         name: socket_id
@@ -217,6 +217,13 @@ paths:
       - Session
 components:
   schemas:
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
     serializer.SessionLogPublic:
       type: object
       properties:
@@ -270,6 +277,30 @@ components:
           type: string
         user_email:
           type: string
+    serializer.SessionLogMetadata:
+      type: object
+      properties:
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
+    v1.sessionLogRequest:
+      type: object
+      properties:
+        killed:
+          type: boolean
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.Recording:
+      type: object
+      properties:
+        recording_id:
+          type: string
+        start_time:
+          type: string
     metadata.IPMetadata:
       type: object
       properties:
@@ -289,37 +320,6 @@ components:
           type: string
         region_name:
           type: string
-    serializer.Recording:
-      type: object
-      properties:
-        recording_id:
-          type: string
-        start_time:
-          type: string
-    serializer.SessionLogMetadata:
-      type: object
-      properties:
-        ip_metadata:
-          $ref: '#/components/schemas/metadata.IPMetadata'
-    v1.sessionLogRequest:
-      type: object
-      properties:
-        killed:
-          type: boolean
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
   securitySchemes:
     Border0_Token:
       type: apiKey
