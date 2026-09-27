@@ -244,6 +244,30 @@ components:
       properties:
         name:
           type: string
+    serializer.Subscription:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        plan:
+          $ref: '#/components/schemas/serializer.Plan'
+        subscription_limit:
+          $ref: '#/components/schemas/serializer.SubscriptionLimit'
+    v1.updateUserPasswordRequest:
+      type: object
+      properties:
+        mfa_passcode:
+          type: string
+          maxLength: 12
+          minLength: 6
+        new_password:
+          type: string
+          maxLength: 200
+          minLength: 8
+        password:
+          type: string
+          maxLength: 200
+          minLength: 1
     serializer.User:
       type: object
       properties:
@@ -271,32 +295,6 @@ components:
           type: string
         user_name:
           type: string
-    serializer.Organization:
-      type: object
-      properties:
-        account_id:
-          type: integer
-        id:
-          type: string
-        mfa_required:
-          type: boolean
-        name:
-          type: string
-        owner_email:
-          type: string
-        setup_wizard:
-          $ref: '#/components/schemas/datatypes.JSONMap'
-        subdomain:
-          type: string
-    serializer.Subscription:
-      type: object
-      properties:
-        account_id:
-          type: integer
-        plan:
-          $ref: '#/components/schemas/serializer.Plan'
-        subscription_limit:
-          $ref: '#/components/schemas/serializer.SubscriptionLimit'
     v1.createUserRequest:
       type: object
       required:
@@ -328,21 +326,13 @@ components:
           minLength: 0
         subdomain:
           type: string
-    v1.updateUserPasswordRequest:
+    v1.BaseErrorResponse:
       type: object
       properties:
-        mfa_passcode:
+        error_message:
           type: string
-          maxLength: 12
-          minLength: 6
-        new_password:
-          type: string
-          maxLength: 200
-          minLength: 8
-        password:
-          type: string
-          maxLength: 200
-          minLength: 1
+        status_code:
+          type: integer
     v1.updateUserRequest:
       type: object
       properties:
@@ -354,16 +344,26 @@ components:
           minLength: 1
         survey_data:
           $ref: '#/components/schemas/datatypes.JSONMap'
+    serializer.Organization:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        id:
+          type: string
+        mfa_required:
+          type: boolean
+        name:
+          type: string
+        owner_email:
+          type: string
+        setup_wizard:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+        subdomain:
+          type: string
     datatypes.JSONMap:
       type: object
       additionalProperties: true
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
     serializer.SubscriptionLimit:
       type: object
       properties:

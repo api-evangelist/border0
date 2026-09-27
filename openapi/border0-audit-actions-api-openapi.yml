@@ -110,13 +110,6 @@ paths:
       - Audit Actions
 components:
   schemas:
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
     serializer.AuditActionPublic:
       type: object
       properties:
@@ -134,6 +127,13 @@ components:
           type: string
         resource_type:
           type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
   securitySchemes:
     Border0_Token:
       type: apiKey

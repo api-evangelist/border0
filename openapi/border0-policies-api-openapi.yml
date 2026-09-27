@@ -147,6 +147,16 @@ paths:
       - Policies
 components:
   schemas:
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
     serializer.Policy:
       type: object
       properties:
@@ -170,16 +180,6 @@ components:
           type: array
           items:
             type: string
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
   securitySchemes:
     Border0_Token:
       type: apiKey
