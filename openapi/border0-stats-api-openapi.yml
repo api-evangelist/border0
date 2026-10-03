@@ -126,18 +126,18 @@ components:
           type: string
         status_code:
           type: integer
-    stats.Data:
-      type: object
-      properties:
-        result: {}
-        resultType:
-          type: string
     stats.Result:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/stats.Data'
         status:
+          type: string
+    stats.Data:
+      type: object
+      properties:
+        result: {}
+        resultType:
           type: string
   securitySchemes:
     Border0_Token:

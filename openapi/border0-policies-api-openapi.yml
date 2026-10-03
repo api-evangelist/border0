@@ -147,9 +147,6 @@ paths:
       - Policies
 components:
   schemas:
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -157,6 +154,9 @@ components:
           type: string
         status_code:
           type: integer
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
     serializer.Policy:
       type: object
       properties:

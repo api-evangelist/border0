@@ -176,6 +176,87 @@ paths:
       - Sessions
 components:
   schemas:
+    serializer.SessionLogLocationStats:
+      type: object
+      properties:
+        city_name:
+          type: string
+        client_ip:
+          type: string
+        count:
+          type: integer
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        metadata:
+          type: array
+          items:
+            type: integer
+        region_code:
+          type: string
+        region_name:
+          type: string
+    serializer.Recording:
+      type: object
+      properties:
+        recording_id:
+          type: string
+        start_time:
+          type: string
+    models.SessionLogUserStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        picture:
+          type: string
+        user_email:
+          type: string
+    serializer.SessionLogPublicPaginatedExtended:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/models.PaginationResult'
+        session_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
+    models.PaginationResult:
+      type: object
+      properties:
+        actual_page_size:
+          type: integer
+        current_page:
+          type: integer
+        next_page:
+          type: integer
+        records_per_page:
+          type: integer
+        total_pages:
+          type: integer
+        total_records:
+          type: integer
+    models.SessionLogSocketStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        socket_name:
+          type: string
+        socket_type:
+          type: string
+    serializer.SessionLogMetadata:
+      type: object
+      properties:
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
     metadata.IPMetadata:
       type: object
       properties:
@@ -195,57 +276,12 @@ components:
           type: string
         region_name:
           type: string
-    serializer.SessionLogMetadata:
-      type: object
-      properties:
-        ip_metadata:
-          $ref: '#/components/schemas/metadata.IPMetadata'
-    serializer.SessionLogPublicPaginatedExtended:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/models.PaginationResult'
-        session_logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
     restful.ErrorResponse:
       type: object
       properties:
         error_message:
           type: string
         status_code:
-          type: integer
-    models.SessionLogUserStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        picture:
-          type: string
-        user_email:
-          type: string
-    serializer.Recording:
-      type: object
-      properties:
-        recording_id:
-          type: string
-        start_time:
-          type: string
-    models.PaginationResult:
-      type: object
-      properties:
-        actual_page_size:
-          type: integer
-        current_page:
-          type: integer
-        next_page:
-          type: integer
-        records_per_page:
-          type: integer
-        total_pages:
-          type: integer
-        total_records:
           type: integer
     serializer.SessionLogPublicExtended:
       type: object
@@ -301,42 +337,6 @@ components:
         sub:
           type: string
         user_email:
-          type: string
-    serializer.SessionLogLocationStats:
-      type: object
-      properties:
-        city_name:
-          type: string
-        client_ip:
-          type: string
-        count:
-          type: integer
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        metadata:
-          type: array
-          items:
-            type: integer
-        region_code:
-          type: string
-        region_name:
-          type: string
-    models.SessionLogSocketStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        socket_name:
-          type: string
-        socket_type:
           type: string
     serializer.SessionLogStats:
       type: object

@@ -239,20 +239,28 @@ paths:
       - User
 components:
   schemas:
+    serializer.Organization:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        id:
+          type: string
+        mfa_required:
+          type: boolean
+        name:
+          type: string
+        owner_email:
+          type: string
+        setup_wizard:
+          $ref: '#/components/schemas/datatypes.JSONMap'
+        subdomain:
+          type: string
     serializer.Plan:
       type: object
       properties:
         name:
           type: string
-    serializer.Subscription:
-      type: object
-      properties:
-        account_id:
-          type: integer
-        plan:
-          $ref: '#/components/schemas/serializer.Plan'
-        subscription_limit:
-          $ref: '#/components/schemas/serializer.SubscriptionLimit'
     v1.updateUserPasswordRequest:
       type: object
       properties:
@@ -268,6 +276,22 @@ components:
           type: string
           maxLength: 200
           minLength: 1
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.Subscription:
+      type: object
+      properties:
+        account_id:
+          type: integer
+        plan:
+          $ref: '#/components/schemas/serializer.Plan'
+        subscription_limit:
+          $ref: '#/components/schemas/serializer.SubscriptionLimit'
     serializer.User:
       type: object
       properties:
@@ -295,6 +319,9 @@ components:
           type: string
         user_name:
           type: string
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
     v1.createUserRequest:
       type: object
       required:
@@ -326,44 +353,6 @@ components:
           minLength: 0
         subdomain:
           type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    v1.updateUserRequest:
-      type: object
-      properties:
-        accepted_terms:
-          type: boolean
-        name:
-          type: string
-          maxLength: 200
-          minLength: 1
-        survey_data:
-          $ref: '#/components/schemas/datatypes.JSONMap'
-    serializer.Organization:
-      type: object
-      properties:
-        account_id:
-          type: integer
-        id:
-          type: string
-        mfa_required:
-          type: boolean
-        name:
-          type: string
-        owner_email:
-          type: string
-        setup_wizard:
-          $ref: '#/components/schemas/datatypes.JSONMap'
-        subdomain:
-          type: string
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
     serializer.SubscriptionLimit:
       type: object
       properties:
@@ -385,6 +374,17 @@ components:
           type: integer
         user_count:
           type: integer
+    v1.updateUserRequest:
+      type: object
+      properties:
+        accepted_terms:
+          type: boolean
+        name:
+          type: string
+          maxLength: 200
+          minLength: 1
+        survey_data:
+          $ref: '#/components/schemas/datatypes.JSONMap'
   securitySchemes:
     Border0_Token:
       type: apiKey

@@ -143,95 +143,6 @@ paths:
       - Policy
 components:
   schemas:
-    v1.updatePolicyRequest:
-      type: object
-      required:
-      - policy_data
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        policy_data:
-          $ref: '#/components/schemas/policy.NonParsedPolicyData'
-    policy.NonParsedCondition:
-      type: object
-      properties:
-        when:
-          $ref: '#/components/schemas/policy.NonParsedConditionwhen'
-        where:
-          $ref: '#/components/schemas/policy.NonParsedConditionWhere'
-        who:
-          $ref: '#/components/schemas/policy.ConditionWho'
-    policy.NonParsedConditionWhere:
-      type: object
-      properties:
-        allowed_ip:
-          type: array
-          items:
-            type: string
-        country:
-          type: array
-          items:
-            type: string
-        country_not:
-          type: array
-          items:
-            type: string
-    policy.NonParsedPolicyData:
-      type: object
-      properties:
-        action:
-          description: Action can be a array of string or a JSON object
-          type: array
-          items:
-            type: string
-        condition:
-          $ref: '#/components/schemas/policy.NonParsedCondition'
-        integrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/integration.Integration'
-        version:
-          type: string
-    policy.ConditionWho:
-      type: object
-      properties:
-        domain:
-          type: array
-          items:
-            type: string
-        email:
-          type: array
-          items:
-            type: string
-        group:
-          type: array
-          items:
-            type: string
-        service_account:
-          type: array
-          items:
-            type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    integration.Integration:
-      type: object
-      properties:
-        configuration:
-          description: 'Configuration is the integration configuration e.g. conditions to evaluate
-
-            against. This is generic JSON with schema dependent on integration type.'
-          type: object
-          additionalProperties: true
-        integration_name:
-          description: IntegrationName is the slug of the referenced integration (unique per organization)
-          type: string
     policy.NonParsedConditionwhen:
       type: object
       properties:
@@ -243,9 +154,6 @@ components:
           type: string
         time_of_day_before:
           type: string
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
     serializer.Policy:
       type: object
       properties:
@@ -266,6 +174,98 @@ components:
         policy_data:
           $ref: '#/components/schemas/datatypes.JSONMap'
         socket_ids:
+          type: array
+          items:
+            type: string
+    integration.Integration:
+      type: object
+      properties:
+        configuration:
+          description: 'Configuration is the integration configuration e.g. conditions to evaluate
+
+            against. This is generic JSON with schema dependent on integration type.'
+          type: object
+          additionalProperties: true
+        integration_name:
+          description: IntegrationName is the slug of the referenced integration (unique per organization)
+          type: string
+    v1.updatePolicyRequest:
+      type: object
+      required:
+      - policy_data
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        policy_data:
+          $ref: '#/components/schemas/policy.NonParsedPolicyData'
+    policy.ConditionWho:
+      type: object
+      properties:
+        domain:
+          type: array
+          items:
+            type: string
+        email:
+          type: array
+          items:
+            type: string
+        group:
+          type: array
+          items:
+            type: string
+        service_account:
+          type: array
+          items:
+            type: string
+    policy.NonParsedPolicyData:
+      type: object
+      properties:
+        action:
+          description: Action can be a array of string or a JSON object
+          type: array
+          items:
+            type: string
+        condition:
+          $ref: '#/components/schemas/policy.NonParsedCondition'
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/integration.Integration'
+        version:
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    policy.NonParsedCondition:
+      type: object
+      properties:
+        when:
+          $ref: '#/components/schemas/policy.NonParsedConditionwhen'
+        where:
+          $ref: '#/components/schemas/policy.NonParsedConditionWhere'
+        who:
+          $ref: '#/components/schemas/policy.ConditionWho'
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
+    policy.NonParsedConditionWhere:
+      type: object
+      properties:
+        allowed_ip:
+          type: array
+          items:
+            type: string
+        country:
+          type: array
+          items:
+            type: string
+        country_not:
           type: array
           items:
             type: string

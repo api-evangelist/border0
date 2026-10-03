@@ -251,63 +251,6 @@ paths:
       - Organization
 components:
   schemas:
-    v1.postIdentityProviderResponse:
-      type: object
-      properties:
-        google_workspace_response:
-          $ref: '#/components/schemas/v1.postGoogleWorkspaceIdentityProviderResponse'
-        oidc_response:
-          $ref: '#/components/schemas/v1.postOpenIDConnectIdentityProviderResponse'
-        okta_workforce_response:
-          $ref: '#/components/schemas/v1.postOktaWorkforceIdentityProviderResponse'
-        saml_response:
-          $ref: '#/components/schemas/v1.postSAMLIdentityProviderResponse'
-    v1.getIdentityProvidersResponse:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.IdentityProvider'
-    models.IdentityProvider:
-      type: object
-      properties:
-        display_name:
-          type: string
-        enabled:
-          type: boolean
-        google_workspace_configuration:
-          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
-        logo_url:
-          type: string
-        name:
-          type: string
-        oidc_configuration:
-          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
-        okta_workforce_configuration:
-          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
-        saml_configuration:
-          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
-        type:
-          type: string
-    v1.postSAMLIdentityProviderResponse:
-      type: object
-      properties:
-        must_allow_redirect_url:
-          type: string
-        request_signing_certificate_url:
-          type: string
-    v1.putIdentityProviderStatusRequest:
-      type: object
-      required:
-      - name
-      properties:
-        enable:
-          type: boolean
-        global:
-          type: boolean
-        name:
-          type: string
     models.OpenIDConnectIdentityProviderConfig:
       type: object
       properties:
@@ -337,7 +280,7 @@ components:
 
             See https://darutk.medium.com/diagrams-of-all-the-openid-connect-flows-6968e3990660 for more.'
           type: string
-    v1.getIdentityProviderResponse:
+    models.IdentityProvider:
       type: object
       properties:
         display_name:
@@ -357,6 +300,31 @@ components:
         saml_configuration:
           $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
         type:
+          type: string
+    models.GoogleWorkspaceIdentityProviderConfig:
+      type: object
+      properties:
+        client_id:
+          description: 'An identifier which uniquely identifies border0 as a client of the
+
+            Google Workspace account. You get this and the client secret when
+
+            you create an "App Integration" in the Google API Console.
+
+            This is typically of the form ${GIBBERISH}.apps.googleusercontent.com'
+          type: string
+        client_secret:
+          description: Secret to authenticate with Google Workspace.
+          type: string
+        google_workspace_domain:
+          description: Domain of the Google Workspace
+          type: string
+    v1.postSAMLIdentityProviderResponse:
+      type: object
+      properties:
+        must_allow_redirect_url:
+          type: string
+        request_signing_certificate_url:
           type: string
     v1.postIdentityProviderRequest:
       type: object
@@ -379,6 +347,73 @@ components:
           $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
         type:
           type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.putIdentityProviderStatusRequest:
+      type: object
+      required:
+      - name
+      properties:
+        enable:
+          type: boolean
+        global:
+          type: boolean
+        name:
+          type: string
+    v1.getIdentityProviderResponse:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.patchIdentityProviderRequest:
+      type: object
+      properties:
+        display_name:
+          type: string
+        enabled:
+          type: boolean
+        google_workspace_configuration:
+          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
+        logo_url:
+          type: string
+        name:
+          type: string
+        oidc_configuration:
+          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
+        okta_workforce_configuration:
+          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
+        saml_configuration:
+          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
+        type:
+          type: string
+    v1.getIdentityProvidersResponse:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.IdentityProvider'
     models.SAMLIdentityProviderConfig:
       type: object
       properties:
@@ -409,28 +444,12 @@ components:
 
             assertion signing (private) key.'
           type: string
-    v1.patchIdentityProviderRequest:
+    v1.postOpenIDConnectIdentityProviderResponse:
       type: object
       properties:
-        display_name:
+        must_allow_redirect_url:
           type: string
-        enabled:
-          type: boolean
-        google_workspace_configuration:
-          $ref: '#/components/schemas/models.GoogleWorkspaceIdentityProviderConfig'
-        logo_url:
-          type: string
-        name:
-          type: string
-        oidc_configuration:
-          $ref: '#/components/schemas/models.OpenIDConnectIdentityProviderConfig'
-        okta_workforce_configuration:
-          $ref: '#/components/schemas/models.OktaWorksforceIdentityProviderConfig'
-        saml_configuration:
-          $ref: '#/components/schemas/models.SAMLIdentityProviderConfig'
-        type:
-          type: string
-    v1.postOpenIDConnectIdentityProviderResponse:
+    v1.postOktaWorkforceIdentityProviderResponse:
       type: object
       properties:
         must_allow_redirect_url:
@@ -451,31 +470,6 @@ components:
         okta_domain:
           description: Okta domain for Okta Workforce account e.g. mydomain.okta.com
           type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    models.GoogleWorkspaceIdentityProviderConfig:
-      type: object
-      properties:
-        client_id:
-          description: 'An identifier which uniquely identifies border0 as a client of the
-
-            Google Workspace account. You get this and the client secret when
-
-            you create an "App Integration" in the Google API Console.
-
-            This is typically of the form ${GIBBERISH}.apps.googleusercontent.com'
-          type: string
-        client_secret:
-          description: Secret to authenticate with Google Workspace.
-          type: string
-        google_workspace_domain:
-          description: Domain of the Google Workspace
-          type: string
     v1.postGoogleWorkspaceIdentityProviderResponse:
       type: object
       properties:
@@ -483,11 +477,17 @@ components:
           type: string
         must_allow_redirect_url:
           type: string
-    v1.postOktaWorkforceIdentityProviderResponse:
+    v1.postIdentityProviderResponse:
       type: object
       properties:
-        must_allow_redirect_url:
-          type: string
+        google_workspace_response:
+          $ref: '#/components/schemas/v1.postGoogleWorkspaceIdentityProviderResponse'
+        oidc_response:
+          $ref: '#/components/schemas/v1.postOpenIDConnectIdentityProviderResponse'
+        okta_workforce_response:
+          $ref: '#/components/schemas/v1.postOktaWorkforceIdentityProviderResponse'
+        saml_response:
+          $ref: '#/components/schemas/v1.postSAMLIdentityProviderResponse'
   securitySchemes:
     Border0_Token:
       type: apiKey

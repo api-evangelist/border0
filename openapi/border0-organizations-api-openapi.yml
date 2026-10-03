@@ -1190,6 +1190,134 @@ paths:
       - Organizations
 components:
   schemas:
+    v1.createOrg:
+      type: object
+      properties:
+        name:
+          type: string
+        subdomain:
+          type: string
+    v1.getServiceAccountsTokensResponse:
+      type: object
+      properties:
+        items:
+          type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.TokenSummary'
+    v1.OrganizationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        org_id:
+          type: string
+    serializer.awsS3Config:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.switchOrgPayload:
+      type: object
+      required:
+      - org_name
+      properties:
+        org_name:
+          type: string
+          maxLength: 200
+          minLength: 1
+    v1.serviceAccountCreatePayload:
+      type: object
+      properties:
+        description:
+          description: A short descriptive text about the service account's usage.
+          type: string
+        name:
+          description: Name (unique slug) for the service account.
+          type: string
+        role:
+          description: Border0 permission level, may be "client", "member" or "admin"
+          type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.notificationUpdateRequest:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        webhook_url:
+          type: string
+    serviceaccount.Full:
+      type: object
+      properties:
+        active:
+          type: boolean
+        created_at:
+          type: string
+        description:
+          type: string
+        last_seen_at:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+        service_account_id:
+          type: string
+        updated_at:
+          type: string
+    serializer.OrganizationNotification:
+      type: object
+      properties:
+        email_recipients:
+          type: array
+          items:
+            type: string
+        enabled:
+          type: boolean
+        events:
+          type: array
+          items:
+            type: string
+        integration_configuration:
+          type: object
+          additionalProperties: true
+        name:
+          type: string
+        type:
+          type: string
+        webhook_url:
+          type: string
     serializer.TokenSummary:
       type: object
       properties:
@@ -1210,6 +1338,13 @@ components:
           type: string
         token_id:
           type: string
+    serializer.OrganizationCustomDomain:
+      type: object
+      properties:
+        default:
+          type: boolean
+        domain:
+          type: string
     v1.serviceAccountTokenDetailsPayload:
       type: object
       properties:
@@ -1219,24 +1354,22 @@ components:
         name:
           description: Name (not unique) for the token.
           type: string
-    v1.AwsS3Config:
+    v1.getServiceAccountsResponse:
       type: object
       properties:
-        bucket_name:
-          type: string
-        external_id:
-          type: string
-        region:
-          type: string
-        role_arn:
-          type: string
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
+        items:
           type: integer
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/serviceaccount.Slim'
+    v1.recordingStorageRequest:
+      type: object
+      properties:
+        aws_s3_config:
+          $ref: '#/components/schemas/v1.AwsS3Config'
+        type:
+          type: string
     v1.postServiceAccountTokenResponse:
       type: object
       properties:
@@ -1250,53 +1383,18 @@ components:
           type: string
         token:
           type: string
+    v1.AwsS3Config:
+      type: object
+      properties:
+        bucket_name:
+          type: string
+        external_id:
+          type: string
+        region:
+          type: string
+        role_arn:
+          type: string
     v1.customDomain:
-      type: object
-      properties:
-        default:
-          type: boolean
-        domain:
-          type: string
-    v1.orgSettings:
-      type: object
-      properties:
-        mfa_required:
-          type: boolean
-    v1.createToken:
-      type: object
-      properties:
-        expires_at:
-          type: integer
-        name:
-          type: string
-        role:
-          type: string
-    v1.getServiceAccountsResponse:
-      type: object
-      properties:
-        items:
-          type: integer
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/serviceaccount.Slim'
-    v1.OrganizationRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        org_id:
-          type: string
-    v1.getServiceAccountsTokensResponse:
-      type: object
-      properties:
-        items:
-          type: integer
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.TokenSummary'
-    serializer.OrganizationCustomDomain:
       type: object
       properties:
         default:
@@ -1322,6 +1420,11 @@ components:
           type: string
         updated_at:
           type: string
+    v1.deleteToken:
+      type: object
+      properties:
+        id:
+          type: string
     v1.serviceAccountUpdatePayload:
       type: object
       properties:
@@ -1337,13 +1440,41 @@ components:
         role:
           description: Border0 permission level, may be "client", "member" or "admin"
           type: string
-    v1.recordingStorageRequest:
+    v1.certificateSigningRequest:
+      type: object
+      required:
+      - csr
+      properties:
+        csr:
+          type: string
+    serializer.OrganizationRecordingStorage:
       type: object
       properties:
         aws_s3_config:
-          $ref: '#/components/schemas/v1.AwsS3Config'
+          $ref: '#/components/schemas/serializer.awsS3Config'
+        read_error:
+          type: string
         type:
           type: string
+    v1.mtlsSSHRequest:
+      type: object
+      properties:
+        ssh_public_key:
+          type: string
+    v1.createToken:
+      type: object
+      properties:
+        expires_at:
+          type: integer
+        name:
+          type: string
+        role:
+          type: string
+    v1.orgSettings:
+      type: object
+      properties:
+        mfa_required:
+          type: boolean
     v1.notificationRequest:
       type: object
       properties:
@@ -1365,137 +1496,6 @@ components:
         type:
           type: string
         webhook_url:
-          type: string
-    v1.certificateSigningRequest:
-      type: object
-      required:
-      - csr
-      properties:
-        csr:
-          type: string
-    v1.notificationUpdateRequest:
-      type: object
-      properties:
-        email_recipients:
-          type: array
-          items:
-            type: string
-        enabled:
-          type: boolean
-        events:
-          type: array
-          items:
-            type: string
-        integration_configuration:
-          type: object
-          additionalProperties: true
-        webhook_url:
-          type: string
-    v1.serviceAccountCreatePayload:
-      type: object
-      properties:
-        description:
-          description: A short descriptive text about the service account's usage.
-          type: string
-        name:
-          description: Name (unique slug) for the service account.
-          type: string
-        role:
-          description: Border0 permission level, may be "client", "member" or "admin"
-          type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    serviceaccount.Full:
-      type: object
-      properties:
-        active:
-          type: boolean
-        created_at:
-          type: string
-        description:
-          type: string
-        last_seen_at:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-        service_account_id:
-          type: string
-        updated_at:
-          type: string
-    serializer.awsS3Config:
-      type: object
-      properties:
-        bucket_name:
-          type: string
-        external_id:
-          type: string
-        region:
-          type: string
-        role_arn:
-          type: string
-    serializer.OrganizationNotification:
-      type: object
-      properties:
-        email_recipients:
-          type: array
-          items:
-            type: string
-        enabled:
-          type: boolean
-        events:
-          type: array
-          items:
-            type: string
-        integration_configuration:
-          type: object
-          additionalProperties: true
-        name:
-          type: string
-        type:
-          type: string
-        webhook_url:
-          type: string
-    v1.deleteToken:
-      type: object
-      properties:
-        id:
-          type: string
-    v1.switchOrgPayload:
-      type: object
-      required:
-      - org_name
-      properties:
-        org_name:
-          type: string
-          maxLength: 200
-          minLength: 1
-    v1.mtlsSSHRequest:
-      type: object
-      properties:
-        ssh_public_key:
-          type: string
-    serializer.OrganizationRecordingStorage:
-      type: object
-      properties:
-        aws_s3_config:
-          $ref: '#/components/schemas/serializer.awsS3Config'
-        read_error:
-          type: string
-        type:
-          type: string
-    v1.createOrg:
-      type: object
-      properties:
-        name:
-          type: string
-        subdomain:
           type: string
   securitySchemes:
     Border0_Token:
