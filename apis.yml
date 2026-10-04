@@ -236,6 +236,9 @@ apis:
   - type: OpenAPI
     url: openapi/border0-users-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/border0-capability-edges.yml
+  name: Border0 Business Capability Map
 - type: Overlay
   url: overlays/border0-openapi-overlay.yaml
 - type: Website

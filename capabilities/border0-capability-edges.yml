@@ -1,0 +1,120 @@
+slug: border0
+provider: Border0
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 10
+edges:
+- tag: Organization
+  spec_file: border0-organization-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /organization/identity_providers — List all identity providers for the current organization;
+    schemas models.SAMLIdentityProviderConfig, models.OktaWorksforceIdentityProviderConfig
+  reason: Operations add, update, enable/disable and remove SAML/OIDC/Okta/Google Workspace identity providers
+    — identity federation configuration, squarely Identity & Access Management.
+- tag: Policy
+  spec_file: border0-policy-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: PUT /policy/{uuid} — Updates a policy; schemas policy.ConditionWho, policy.NonParsedConditionWhere
+  reason: Who/where/when condition schemas confirm these are access-authorisation policies governing user
+    access to infrastructure resources — Identity & Access Management.
+- tag: Client
+  spec_file: border0-client-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /client/auth/org/{slug} 'Authenticate a client with headers against organization email';
+    POST /client/device_authorizations 'Posts details for a device initiating a new (OAuth2.0) client
+    device…'; GET /client/resources 'Show socket client resources'
+  reason: Client-side authentication, OAuth2 device authorization code exchange, and listing of authorized
+    resources for an identity-aware access platform — squarely Identity & Access Management (federation,
+    authentication, authorization). The stray AI SQL-generation endpoint is secondary.
+- tag: Policies
+  spec_file: border0-policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /policies — Create a new policy and attach sockets to them
+  reason: Policies here are access-control policies bound to protected resources (sockets) in a Zero Trust
+    access platform, i.e. authorisation policy administration under Identity & Access Management.
+- tag: Users
+  spec_file: border0-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /users/mfa_setup — MFA Setup; POST /users/mfa_challenge — MFA Challenge; PUT /users/mfa_disabled
+    — Disable MFA
+  reason: Multi-factor authentication enrolment, challenge and disablement for platform users is authentication-factor
+    administration, a core Identity & Access Management function rather than incidental plumbing for this
+    access-control vendor.
+- tag: Session
+  spec_file: border0-session-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /session/{socket_id}/{session_id}/session_log — Download a socket's session recording;
+    PUT ... — Kill a socket's session
+  reason: Privileged session recording, inspection and termination for access to servers/databases is
+    privileged access management, explicitly within the IAM sub-capability (IAM, PAM, federation).
+- tag: User
+  spec_file: border0-user-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: POST /user — Register a new user; GET /user/confirm/{token} — Confirm and activate user with
+    a temporary token; PUT /user/password — Update ... account password
+  reason: User account registration, activation and credential (password) maintenance on a Zero Trust
+    access platform is user identity lifecycle administration under Identity & Access Management.
+- tag: Audit Actions
+  spec_file: border0-audit-actions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.74
+  evidence: GET /audit_actions 'Show all audit logs from organization'; GET /audit_actions/actors 'Show
+    all actors from a given organization'; schema serializer.AuditActionPublic
+  reason: Audit logs of actors' access actions within a Zero Trust access platform — access audit trail,
+    part of Identity & Access Management rather than Internal Audit Management (BC-140), which is a homograph
+    trap. Confidence held below 0.8 because audit logging could alternatively be read as security governance/monitoring.
+- tag: Mtls-Ca
+  spec_file: border0-mtls-ca-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /mtls-ca/socket/{socket_dnsname}/csr — Generate a cert request and sign the CSR with
+    socket's CA cert; POST .../ssh — Generate a signed SSH cert for socket
+  reason: Issuance of short-lived mTLS/SSH certificates used to authenticate users to protected resources
+    is credential issuance within identity and access management, not generic plumbing. Some ambiguity
+    vs. security architecture, hence moderate confidence.
+- tag: Socket
+  spec_file: border0-socket-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /socket/{socket_id_or_name}/evaluate — Evaluate policy for a socket; POST /socket — Create
+    a socket
+  reason: Sockets are the policy-gated publications of internal services through which user access is
+    authenticated and authorised; creating them and evaluating policy against them is access control over
+    infrastructure resources. Some overlap with IT infrastructure/network management keeps confidence
+    moderate.
