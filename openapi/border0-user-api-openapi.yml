@@ -256,26 +256,9 @@ components:
           $ref: '#/components/schemas/datatypes.JSONMap'
         subdomain:
           type: string
-    serializer.Plan:
+    datatypes.JSONMap:
       type: object
-      properties:
-        name:
-          type: string
-    v1.updateUserPasswordRequest:
-      type: object
-      properties:
-        mfa_passcode:
-          type: string
-          maxLength: 12
-          minLength: 6
-        new_password:
-          type: string
-          maxLength: 200
-          minLength: 8
-        password:
-          type: string
-          maxLength: 200
-          minLength: 1
+      additionalProperties: true
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -283,6 +266,32 @@ components:
           type: string
         status_code:
           type: integer
+    serializer.SubscriptionLimit:
+      type: object
+      properties:
+        admin_user_count:
+          type: integer
+        custom_domain_count:
+          type: integer
+        custom_idp_count:
+          type: integer
+        notification_count:
+          type: integer
+        organization_count:
+          type: integer
+        socket_count:
+          type: integer
+        socket_tcp_count:
+          type: integer
+        subscription_id:
+          type: integer
+        user_count:
+          type: integer
+    serializer.Plan:
+      type: object
+      properties:
+        name:
+          type: string
     serializer.Subscription:
       type: object
       properties:
@@ -292,36 +301,6 @@ components:
           $ref: '#/components/schemas/serializer.Plan'
         subscription_limit:
           $ref: '#/components/schemas/serializer.SubscriptionLimit'
-    serializer.User:
-      type: object
-      properties:
-        accepted_terms:
-          type: boolean
-        default_org:
-          type: string
-        email:
-          type: string
-        mfa_enabled:
-          type: boolean
-        name:
-          type: string
-        primary_organization:
-          $ref: '#/components/schemas/serializer.Organization'
-        role:
-          type: string
-        sshkey:
-          type: string
-        subscription:
-          $ref: '#/components/schemas/serializer.Subscription'
-        survey_completed:
-          type: boolean
-        user_id:
-          type: string
-        user_name:
-          type: string
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
     v1.createUserRequest:
       type: object
       required:
@@ -353,27 +332,6 @@ components:
           minLength: 0
         subdomain:
           type: string
-    serializer.SubscriptionLimit:
-      type: object
-      properties:
-        admin_user_count:
-          type: integer
-        custom_domain_count:
-          type: integer
-        custom_idp_count:
-          type: integer
-        notification_count:
-          type: integer
-        organization_count:
-          type: integer
-        socket_count:
-          type: integer
-        socket_tcp_count:
-          type: integer
-        subscription_id:
-          type: integer
-        user_count:
-          type: integer
     v1.updateUserRequest:
       type: object
       properties:
@@ -385,6 +343,48 @@ components:
           minLength: 1
         survey_data:
           $ref: '#/components/schemas/datatypes.JSONMap'
+    v1.updateUserPasswordRequest:
+      type: object
+      properties:
+        mfa_passcode:
+          type: string
+          maxLength: 12
+          minLength: 6
+        new_password:
+          type: string
+          maxLength: 200
+          minLength: 8
+        password:
+          type: string
+          maxLength: 200
+          minLength: 1
+    serializer.User:
+      type: object
+      properties:
+        accepted_terms:
+          type: boolean
+        default_org:
+          type: string
+        email:
+          type: string
+        mfa_enabled:
+          type: boolean
+        name:
+          type: string
+        primary_organization:
+          $ref: '#/components/schemas/serializer.Organization'
+        role:
+          type: string
+        sshkey:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/serializer.Subscription'
+        survey_completed:
+          type: boolean
+        user_id:
+          type: string
+        user_name:
+          type: string
   securitySchemes:
     Border0_Token:
       type: apiKey

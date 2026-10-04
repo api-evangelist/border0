@@ -176,40 +176,6 @@ paths:
       - Sessions
 components:
   schemas:
-    serializer.SessionLogLocationStats:
-      type: object
-      properties:
-        city_name:
-          type: string
-        client_ip:
-          type: string
-        count:
-          type: integer
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        metadata:
-          type: array
-          items:
-            type: integer
-        region_code:
-          type: string
-        region_name:
-          type: string
-    serializer.Recording:
-      type: object
-      properties:
-        recording_id:
-          type: string
-        start_time:
-          type: string
     models.SessionLogUserStats:
       type: object
       properties:
@@ -219,15 +185,13 @@ components:
           type: string
         user_email:
           type: string
-    serializer.SessionLogPublicPaginatedExtended:
+    serializer.Recording:
       type: object
       properties:
-        pagination:
-          $ref: '#/components/schemas/models.PaginationResult'
-        session_logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
+        recording_id:
+          type: string
+        start_time:
+          type: string
     models.PaginationResult:
       type: object
       properties:
@@ -243,20 +207,42 @@ components:
           type: integer
         total_records:
           type: integer
-    models.SessionLogSocketStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        socket_name:
-          type: string
-        socket_type:
-          type: string
     serializer.SessionLogMetadata:
       type: object
       properties:
         ip_metadata:
           $ref: '#/components/schemas/metadata.IPMetadata'
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    serializer.SessionLogPublicPaginatedExtended:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/models.PaginationResult'
+        session_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
+    serializer.SessionLogStats:
+      type: object
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
+        sockets:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogSocketStats'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogUserStats'
     metadata.IPMetadata:
       type: object
       properties:
@@ -276,13 +262,15 @@ components:
           type: string
         region_name:
           type: string
-    restful.ErrorResponse:
+    models.SessionLogSocketStats:
       type: object
       properties:
-        error_message:
-          type: string
-        status_code:
+        count:
           type: integer
+        socket_name:
+          type: string
+        socket_type:
+          type: string
     serializer.SessionLogPublicExtended:
       type: object
       properties:
@@ -338,21 +326,33 @@ components:
           type: string
         user_email:
           type: string
-    serializer.SessionLogStats:
+    serializer.SessionLogLocationStats:
       type: object
       properties:
-        locations:
+        city_name:
+          type: string
+        client_ip:
+          type: string
+        count:
+          type: integer
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        metadata:
           type: array
           items:
-            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
-        sockets:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogSocketStats'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogUserStats'
+            type: integer
+        region_code:
+          type: string
+        region_name:
+          type: string
   securitySchemes:
     Border0_Token:
       type: apiKey

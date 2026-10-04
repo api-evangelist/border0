@@ -210,13 +210,15 @@ paths:
       - Users
 components:
   schemas:
-    v1.BaseErrorResponse:
+    v1.checkPassword:
       type: object
+      required:
+      - password
       properties:
-        error_message:
+        password:
           type: string
-        status_code:
-          type: integer
+          maxLength: 200
+          minLength: 1
     v1.switchOrgRequest:
       type: object
       required:
@@ -226,6 +228,13 @@ components:
           type: string
           maxLength: 200
           minLength: 1
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
     v1.mfaConfirm:
       type: object
       required:
@@ -237,15 +246,6 @@ components:
           minLength: 1
         device_identifier:
           type: string
-    v1.checkPassword:
-      type: object
-      required:
-      - password
-      properties:
-        password:
-          type: string
-          maxLength: 200
-          minLength: 1
   securitySchemes:
     Border0_Token:
       type: apiKey

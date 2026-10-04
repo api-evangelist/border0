@@ -224,6 +224,11 @@ components:
           type: string
         start_time:
           type: string
+    v1.sessionLogRequest:
+      type: object
+      properties:
+        killed:
+          type: boolean
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -231,11 +236,37 @@ components:
           type: string
         status_code:
           type: integer
-    v1.sessionLogRequest:
+    serializer.SessionLogMetadata:
       type: object
       properties:
-        killed:
-          type: boolean
+        ip_metadata:
+          $ref: '#/components/schemas/metadata.IPMetadata'
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
+          type: string
     serializer.SessionLogPublic:
       type: object
       properties:
@@ -289,37 +320,6 @@ components:
           type: string
         user_email:
           type: string
-    serializer.SessionLogMetadata:
-      type: object
-      properties:
-        ip_metadata:
-          $ref: '#/components/schemas/metadata.IPMetadata'
-    metadata.IPMetadata:
-      type: object
-      properties:
-        city_name:
-          type: string
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        region_code:
-          type: string
-        region_name:
-          type: string
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
   securitySchemes:
     Border0_Token:
       type: apiKey

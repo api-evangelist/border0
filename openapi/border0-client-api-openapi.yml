@@ -256,6 +256,37 @@ paths:
       - Client
 components:
   schemas:
+    llm.DatabaseAgentInput:
+      type: object
+      properties:
+        database_name:
+          type: string
+        database_type:
+          type: string
+        question:
+          type: string
+        schemas:
+          type: string
+    v1.clientResourceResponse:
+      type: object
+      properties:
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        refresh_hint:
+          type: integer
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/v1.clientResourceData'
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
     v1.getClientDeviceAuthorizationResponse:
       type: object
       properties:
@@ -267,13 +298,6 @@ components:
           type: string
         status:
           type: string
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
     v1.postClientDeviceAuthorizationResponse:
       type: object
       properties:
@@ -291,6 +315,20 @@ components:
           type: integer
         token_endpoint_poll_max_attempts:
           type: integer
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.postClientDeviceAuthorizationRequest:
+      type: object
+      properties:
+        device_os:
+          type: string
+        organization:
+          type: string
     v1.clientResourceData:
       type: object
       properties:
@@ -330,44 +368,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    v1.postClientDeviceAuthorizationRequest:
-      type: object
-      properties:
-        device_os:
-          type: string
-        organization:
-          type: string
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    v1.clientResourceResponse:
-      type: object
-      properties:
-        ip_addresses:
-          type: array
-          items:
-            type: string
-        refresh_hint:
-          type: integer
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/v1.clientResourceData'
-    llm.DatabaseAgentInput:
-      type: object
-      properties:
-        database_name:
-          type: string
-        database_type:
-          type: string
-        question:
-          type: string
-        schemas:
-          type: string
   securitySchemes:
     Border0_Token:
       type: apiKey
