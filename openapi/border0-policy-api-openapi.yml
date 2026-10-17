@@ -143,46 +143,6 @@ paths:
       - Policy
 components:
   schemas:
-    policy.NonParsedConditionWhere:
-      type: object
-      properties:
-        allowed_ip:
-          type: array
-          items:
-            type: string
-        country:
-          type: array
-          items:
-            type: string
-        country_not:
-          type: array
-          items:
-            type: string
-    policy.NonParsedConditionwhen:
-      type: object
-      properties:
-        after:
-          type: string
-        before:
-          type: string
-        time_of_day_after:
-          type: string
-        time_of_day_before:
-          type: string
-    v1.updatePolicyRequest:
-      type: object
-      required:
-      - policy_data
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-        policy_data:
-          $ref: '#/components/schemas/policy.NonParsedPolicyData'
-    datatypes.JSONMap:
-      type: object
-      additionalProperties: true
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -190,6 +150,9 @@ components:
           type: string
         status_code:
           type: integer
+    datatypes.JSONMap:
+      type: object
+      additionalProperties: true
     integration.Integration:
       type: object
       properties:
@@ -202,31 +165,6 @@ components:
         integration_name:
           description: IntegrationName is the slug of the referenced integration (unique per organization)
           type: string
-    policy.NonParsedPolicyData:
-      type: object
-      properties:
-        action:
-          description: Action can be a array of string or a JSON object
-          type: array
-          items:
-            type: string
-        condition:
-          $ref: '#/components/schemas/policy.NonParsedCondition'
-        integrations:
-          type: array
-          items:
-            $ref: '#/components/schemas/integration.Integration'
-        version:
-          type: string
-    policy.NonParsedCondition:
-      type: object
-      properties:
-        when:
-          $ref: '#/components/schemas/policy.NonParsedConditionwhen'
-        where:
-          $ref: '#/components/schemas/policy.NonParsedConditionWhere'
-        who:
-          $ref: '#/components/schemas/policy.ConditionWho'
     policy.ConditionWho:
       type: object
       properties:
@@ -246,6 +184,68 @@ components:
           type: array
           items:
             type: string
+    policy.NonParsedConditionwhen:
+      type: object
+      properties:
+        after:
+          type: string
+        before:
+          type: string
+        time_of_day_after:
+          type: string
+        time_of_day_before:
+          type: string
+    policy.NonParsedConditionWhere:
+      type: object
+      properties:
+        allowed_ip:
+          type: array
+          items:
+            type: string
+        country:
+          type: array
+          items:
+            type: string
+        country_not:
+          type: array
+          items:
+            type: string
+    v1.updatePolicyRequest:
+      type: object
+      required:
+      - policy_data
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        policy_data:
+          $ref: '#/components/schemas/policy.NonParsedPolicyData'
+    policy.NonParsedCondition:
+      type: object
+      properties:
+        when:
+          $ref: '#/components/schemas/policy.NonParsedConditionwhen'
+        where:
+          $ref: '#/components/schemas/policy.NonParsedConditionWhere'
+        who:
+          $ref: '#/components/schemas/policy.ConditionWho'
+    policy.NonParsedPolicyData:
+      type: object
+      properties:
+        action:
+          description: Action can be a array of string or a JSON object
+          type: array
+          items:
+            type: string
+        condition:
+          $ref: '#/components/schemas/policy.NonParsedCondition'
+        integrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/integration.Integration'
+        version:
+          type: string
     serializer.Policy:
       type: object
       properties:

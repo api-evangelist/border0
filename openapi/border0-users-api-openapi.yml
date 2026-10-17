@@ -219,22 +219,6 @@ components:
           type: string
           maxLength: 200
           minLength: 1
-    v1.switchOrgRequest:
-      type: object
-      required:
-      - org_name
-      properties:
-        org_name:
-          type: string
-          maxLength: 200
-          minLength: 1
-    v1.BaseErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
     v1.mfaConfirm:
       type: object
       required:
@@ -246,6 +230,22 @@ components:
           minLength: 1
         device_identifier:
           type: string
+    v1.BaseErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.switchOrgRequest:
+      type: object
+      required:
+      - org_name
+      properties:
+        org_name:
+          type: string
+          maxLength: 200
+          minLength: 1
   securitySchemes:
     Border0_Token:
       type: apiKey

@@ -224,11 +224,6 @@ components:
           type: string
         start_time:
           type: string
-    v1.sessionLogRequest:
-      type: object
-      properties:
-        killed:
-          type: boolean
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -241,32 +236,6 @@ components:
       properties:
         ip_metadata:
           $ref: '#/components/schemas/metadata.IPMetadata'
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    metadata.IPMetadata:
-      type: object
-      properties:
-        city_name:
-          type: string
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        region_code:
-          type: string
-        region_name:
-          type: string
     serializer.SessionLogPublic:
       type: object
       properties:
@@ -319,6 +288,37 @@ components:
         sub:
           type: string
         user_email:
+          type: string
+    v1.sessionLogRequest:
+      type: object
+      properties:
+        killed:
+          type: boolean
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
           type: string
   securitySchemes:
     Border0_Token:

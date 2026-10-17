@@ -256,30 +256,6 @@ paths:
       - Client
 components:
   schemas:
-    llm.DatabaseAgentInput:
-      type: object
-      properties:
-        database_name:
-          type: string
-        database_type:
-          type: string
-        question:
-          type: string
-        schemas:
-          type: string
-    v1.clientResourceResponse:
-      type: object
-      properties:
-        ip_addresses:
-          type: array
-          items:
-            type: string
-        refresh_hint:
-          type: integer
-        resources:
-          type: array
-          items:
-            $ref: '#/components/schemas/v1.clientResourceData'
     v1.BaseErrorResponse:
       type: object
       properties:
@@ -287,48 +263,6 @@ components:
           type: string
         status_code:
           type: integer
-    v1.getClientDeviceAuthorizationResponse:
-      type: object
-      properties:
-        client_token:
-          type: string
-        device_ip:
-          type: string
-        device_os:
-          type: string
-        status:
-          type: string
-    v1.postClientDeviceAuthorizationResponse:
-      type: object
-      properties:
-        authorization_endpoint:
-          type: string
-        authorization_endpoint_code_query_param:
-          type: string
-        code:
-          type: string
-        token_endpoint:
-          type: string
-        token_endpoint_code_header:
-          type: string
-        token_endpoint_poll_interval:
-          type: integer
-        token_endpoint_poll_max_attempts:
-          type: integer
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    v1.postClientDeviceAuthorizationRequest:
-      type: object
-      properties:
-        device_os:
-          type: string
-        organization:
-          type: string
     v1.clientResourceData:
       type: object
       properties:
@@ -368,6 +302,72 @@ components:
           type: object
           additionalProperties:
             type: string
+    v1.clientResourceResponse:
+      type: object
+      properties:
+        ip_addresses:
+          type: array
+          items:
+            type: string
+        refresh_hint:
+          type: integer
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/v1.clientResourceData'
+    llm.DatabaseAgentInput:
+      type: object
+      properties:
+        database_name:
+          type: string
+        database_type:
+          type: string
+        question:
+          type: string
+        schemas:
+          type: string
+    v1.postClientDeviceAuthorizationRequest:
+      type: object
+      properties:
+        device_os:
+          type: string
+        organization:
+          type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    v1.getClientDeviceAuthorizationResponse:
+      type: object
+      properties:
+        client_token:
+          type: string
+        device_ip:
+          type: string
+        device_os:
+          type: string
+        status:
+          type: string
+    v1.postClientDeviceAuthorizationResponse:
+      type: object
+      properties:
+        authorization_endpoint:
+          type: string
+        authorization_endpoint_code_query_param:
+          type: string
+        code:
+          type: string
+        token_endpoint:
+          type: string
+        token_endpoint_code_header:
+          type: string
+        token_endpoint_poll_interval:
+          type: integer
+        token_endpoint_poll_max_attempts:
+          type: integer
   securitySchemes:
     Border0_Token:
       type: apiKey

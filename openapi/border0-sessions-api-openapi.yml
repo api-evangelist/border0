@@ -176,21 +176,30 @@ paths:
       - Sessions
 components:
   schemas:
-    models.SessionLogUserStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        picture:
-          type: string
-        user_email:
-          type: string
     serializer.Recording:
       type: object
       properties:
         recording_id:
           type: string
         start_time:
+          type: string
+    serializer.SessionLogPublicPaginatedExtended:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/models.PaginationResult'
+        session_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
+    models.SessionLogSocketStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        socket_name:
+          type: string
+        socket_type:
           type: string
     models.PaginationResult:
       type: object
@@ -212,65 +221,6 @@ components:
       properties:
         ip_metadata:
           $ref: '#/components/schemas/metadata.IPMetadata'
-    restful.ErrorResponse:
-      type: object
-      properties:
-        error_message:
-          type: string
-        status_code:
-          type: integer
-    serializer.SessionLogPublicPaginatedExtended:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/models.PaginationResult'
-        session_logs:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogPublicExtended'
-    serializer.SessionLogStats:
-      type: object
-      properties:
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
-        sockets:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogSocketStats'
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/models.SessionLogUserStats'
-    metadata.IPMetadata:
-      type: object
-      properties:
-        city_name:
-          type: string
-        country_code:
-          type: string
-        country_name:
-          type: string
-        isp:
-          type: string
-        latitude:
-          type: number
-        longitude:
-          type: number
-        region_code:
-          type: string
-        region_name:
-          type: string
-    models.SessionLogSocketStats:
-      type: object
-      properties:
-        count:
-          type: integer
-        socket_name:
-          type: string
-        socket_type:
-          type: string
     serializer.SessionLogPublicExtended:
       type: object
       properties:
@@ -326,6 +276,32 @@ components:
           type: string
         user_email:
           type: string
+    restful.ErrorResponse:
+      type: object
+      properties:
+        error_message:
+          type: string
+        status_code:
+          type: integer
+    metadata.IPMetadata:
+      type: object
+      properties:
+        city_name:
+          type: string
+        country_code:
+          type: string
+        country_name:
+          type: string
+        isp:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+        region_code:
+          type: string
+        region_name:
+          type: string
     serializer.SessionLogLocationStats:
       type: object
       properties:
@@ -352,6 +328,30 @@ components:
         region_code:
           type: string
         region_name:
+          type: string
+    serializer.SessionLogStats:
+      type: object
+      properties:
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/serializer.SessionLogLocationStats'
+        sockets:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogSocketStats'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/models.SessionLogUserStats'
+    models.SessionLogUserStats:
+      type: object
+      properties:
+        count:
+          type: integer
+        picture:
+          type: string
+        user_email:
           type: string
   securitySchemes:
     Border0_Token:
